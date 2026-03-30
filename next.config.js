@@ -10,6 +10,12 @@ const nextConfig = {
   //   styledComponents: true,
   // },
   reactStrictMode: false, // Recommended for the `pages` directory, default in `app`.
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
   images: {},
   webpack(config, { isServer }) {

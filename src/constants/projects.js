@@ -14,53 +14,7 @@ const projects = [
     menuColor: 'gold',
     menuFontColor: '#2D2D2D',
     fluidColor: '#0028FF',
-    images: [
-      {
-        src: '/video-strategy/video.mp4',
-        tag: 'video',
-        isRight: false,
-      },
-      {
-        src: '/video-strategy/7.webp',
-        tag: 'small',
-        isRight: false,
-      },
-      {
-        src: '/video-strategy/6.webp',
-        tag: 'small',
-        isRight: true,
-      },
-      {
-        src: '/video-strategy/video2.mp4',
-        tag: 'video',
-        isRight: false,
-      },
-      {
-        src: '/video-strategy/1.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/video-strategy/5.webp',
-        tag: 'small',
-        isRight: false,
-      },
-      {
-        src: '/video-strategy/8.webp',
-        tag: 'small',
-        isRight: true,
-      },
-      {
-        src: '/video-strategy/2.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/video-strategy/3.webp',
-        tag: 'big',
-        isRight: false,
-      },
-    ],
+    images: [],
     desc: [
       'A technology solutions venture focused on digital innovation, building scalable systems and tools for modern businesses.',
       'Working on revenue growth strategies, product development, and leading cross-functional teams to deliver impactful results.',
@@ -82,63 +36,7 @@ const projects = [
     menuColor: '#5C58EB',
     menuFontColor: '#f0f4f1',
     fluidColor: '#A3A714',
-    images: [
-      {
-        src: '/content-creation/1.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/2.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/3.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/4.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/5.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/6.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/7.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/8.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/9.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/10.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/content-creation/11.webp',
-        tag: 'big',
-        isRight: false,
-      },
-    ],
+    images: [],
     desc: [
       'A strategic planning and event solutions company providing end-to-end business planning, event management, and consulting services.',
       'Handled business strategy, operations, and company growth while ensuring client satisfaction across diverse project portfolios.',
@@ -160,58 +58,7 @@ const projects = [
     menuColor: '#FFD54F',
     menuFontColor: '#000000',
     fluidColor: '#002AB0',
-    images: [
-      {
-        src: '/digital-campaigns/1.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/2.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/3.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/4.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/5.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/6.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/7.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/8.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/9.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-      {
-        src: '/digital-campaigns/10.webp',
-        tag: 'medium',
-        isRight: false,
-      },
-    ],
+    images: [],
     desc: [
       'Led advertising operations, marketing campaigns, and brand strategy initiatives for clients across multiple industries.',
       'Developed and executed comprehensive marketing strategies that drove measurable results in brand awareness and customer acquisition.',
@@ -234,28 +81,7 @@ const projects = [
     menuColor: '#170053',
     menuFontColor: '#f0f4f1',
     fluidColor: '#E8FFC8',
-    images: [
-      {
-        src: '/brand-storytelling/video.mp4',
-        tag: 'video',
-        isRight: true,
-      },
-      {
-        src: '/brand-storytelling/1.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/brand-storytelling/2.webp',
-        tag: 'big',
-        isRight: false,
-      },
-      {
-        src: '/brand-storytelling/3.webp',
-        tag: 'big',
-        isRight: false,
-      },
-    ],
+    images: [],
     desc: [
       'A healthcare initiative co-founded in Kathmandu, Nepal, focused on healthcare management and compliance services.',
       'Developed healthcare service delivery frameworks and ensured regulatory compliance across operations.',

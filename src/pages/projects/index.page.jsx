@@ -3,7 +3,6 @@
 
 import CustomHead from '@src/components/dom/CustomHead';
 import Image from 'next/image';
-import Link from 'next/link';
 import clsx from 'clsx';
 import { gsap } from 'gsap';
 import projects from '@src/constants/projects';
