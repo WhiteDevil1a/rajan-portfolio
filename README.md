@@ -34,13 +34,9 @@ The visual foundation of the site is built around a **three-phase layering syste
 
 ---
 
-## 📄 License & Attribution
+## 📄 License
 
-This project is licensed under the **MIT License (with attribution required)**.
-
-> If you use this code or parts of it, **credit is required**:
->
-> _"Original portfolio design and development by Evangelos Giatsidis — [giats.me](https://giats.me)"_
+This project is licensed under the **MIT License**.
 
 ---
 

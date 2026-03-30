@@ -1,6 +1,7 @@
 {
   "name": "rajan-portfolio",
   "version": "0.1.0",
+  "author": "Rajan Bhatta",
   "private": true,
   "scripts": {
     "dev": "next dev",
