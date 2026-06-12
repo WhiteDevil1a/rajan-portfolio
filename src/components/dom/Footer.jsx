@@ -125,7 +125,7 @@ function Footer() {
       </div>
       <div className={styles.middleContainer} style={{ gridColumn: '13 / 17', textAlign: isMobile ? 'left' : 'right' }}>
         <AppearTitle isFooter>
-          <div className="p-x">© 2025 · Rajan Bhatta</div>
+          <div className="p-x">© 2026 · Rajan Bhatta</div>
           <div className={clsx('p-x', styles.middleText)}>All Rights Reserved</div>
         </AppearTitle>
       </div>
