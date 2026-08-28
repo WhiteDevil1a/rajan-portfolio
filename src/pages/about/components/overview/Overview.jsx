@@ -12,13 +12,13 @@ function Overview() {
         {isMobile ? (
           <AppearTitle key="mobile-queto">
             <h3 className="h3">
-              An entrepreneur&apos;s path is like a journey, <span className="medium">turning</span> simple ideas into <span className="medium">meaningful</span> and <span className="medium">impactful</span> real-world ventures.
+              A brand designer&apos;s path is like a journey, <span className="medium">turning</span> simple ideas into <span className="medium">meaningful</span> and <span className="medium">impactful</span> visual identities.
             </h3>
           </AppearTitle>
         ) : (
           <AppearTitle key="desktop-queto">
             <h3 className="h3">
-              An entrepreneur&apos;s path is like a journey, <span className="medium">turning</span> simple ideas into <span className="medium">meaningful</span> and <span className="medium">impactful</span> real-world ventures.
+              A brand designer&apos;s path is like a journey, <span className="medium">turning</span> simple ideas into <span className="medium">meaningful</span> and <span className="medium">impactful</span> visual identities.
             </h3>
           </AppearTitle>
         )}
@@ -31,17 +31,17 @@ function Overview() {
       <div className={styles.desc}>
         {!isMobile ? (
           <AppearTitle key="desktop-overview">
-            <h6 className="h6">I&apos;m Rajan Bhatta—an entrepreneur and builder originally from Nepal. Over the years, I&apos;ve had the chance to dive into tech, marketing, and multiple creative industries.</h6>
-            <h6 className={clsx(styles.paddingTop, 'h6')}>I love learning how things work and turning those insights into real businesses. One of my goals is to keep exploring new ideas while shaping ventures that actually matter.</h6>
-            <h6 className={clsx(styles.paddingTop, 'h6')}>Beyond business and code, I&apos;m a sketch artist with years of drawing experience, and I enjoy tapping into my creative side through design and video making.</h6>
+            <h6 className="h6">I&apos;m Rajan Bhatta—a brand designer and visual identity specialist originally from Nepal. Over the years, I&apos;ve had the chance to dive into brand design, color strategy, and creative industries.</h6>
+            <h6 className={clsx(styles.paddingTop, 'h6')}>I love learning how brands communicate and turning those insights into real visual identities. One of my goals is to keep exploring new ideas while crafting brand systems that actually matter.</h6>
+            <h6 className={clsx(styles.paddingTop, 'h6')}>Beyond brand work, I build ventures across tech and marketing, and I enjoy tapping into my creative side through sketching, design, and video making.</h6>
             <h6 className={clsx(styles.paddingTop, 'h6')}>This space is simply a reflection of the journey so far.</h6>
             <h6 className={clsx(styles.paddingTop, 'h6')}>Rajan Bhatta.</h6>
           </AppearTitle>
         ) : (
           <AppearTitle key="mobile-overview">
-            <h6 className="h6">I&apos;m Rajan Bhatta—an entrepreneur and builder originally from Nepal. Over the years, I&apos;ve had the chance to dive into tech, marketing, and multiple creative industries.</h6>
-            <h6 className={clsx(styles.paddingTop, 'h6')}>I love learning how things work and turning those insights into real businesses. One of my goals is to keep exploring new ideas while shaping ventures that actually matter.</h6>
-            <h6 className={clsx(styles.paddingTop, 'h6')}>Beyond business and code, I&apos;m a sketch artist with years of drawing experience, and I enjoy tapping into my creative side through design and video making.</h6>
+            <h6 className="h6">I&apos;m Rajan Bhatta—a brand designer and visual identity specialist originally from Nepal. Over the years, I&apos;ve had the chance to dive into brand design, color strategy, and creative industries.</h6>
+            <h6 className={clsx(styles.paddingTop, 'h6')}>I love learning how brands communicate and turning those insights into real visual identities. One of my goals is to keep exploring new ideas while crafting brand systems that actually matter.</h6>
+            <h6 className={clsx(styles.paddingTop, 'h6')}>Beyond brand work, I build ventures across tech and marketing, and I enjoy tapping into my creative side through sketching, design, and video making.</h6>
             <h6 className={clsx(styles.paddingTop, 'h6')}>This space is simply a reflection of the journey so far.</h6>
             <h6 className={clsx(styles.paddingTop, 'h6')}>Rajan Bhatta.</h6>
           </AppearTitle>

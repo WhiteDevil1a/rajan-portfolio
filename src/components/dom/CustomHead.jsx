@@ -9,7 +9,7 @@ const getSchema = () => ({
   '@context': 'http://schema.org',
   '@type': 'Person',
   name: 'Rajan Bhatta',
-  jobTitle: 'Entrepreneur & Tech Enthusiast',
+  jobTitle: 'Brand Designer & Visual Identity Strategist',
   url: SITE_URL,
   image: OG_IMAGE,
   email: 'mailto:hi@rajanbhatta.com.np',

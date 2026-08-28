@@ -226,11 +226,11 @@ function Home() {
       <div className={clsx(styles.topContainer, 'layout-grid-inner')}>
         <div className={styles.leftContainer}>
           <h2 className="h2">Building</h2>
-          <h2 className={clsx('h2', 'bold')}>Meaningful Ventures</h2>
+          <h2 className={clsx('h2', 'bold', styles.highlight)}>Meaningful Brands</h2>
         </div>
         {!isMobile && (
           <h6 className={clsx('h6', styles.rightContainer)}>
-            With roots in tech and business, I build digital experiences that bring ideas to life. Let&apos;s create something meaningful together.
+            With roots in brand design and strategy, I build <span className={styles.highlight}>visual identities</span> that bring ideas to life. Let&apos;s create something <span className={styles.highlight}>meaningful</span> together.
           </h6>
         )}
       </div>
@@ -250,7 +250,7 @@ function Home() {
       </div>
       {isMobile && (
         <div className={styles.rightContainerMobile}>
-          <h6 className="h6"> With roots in tech and business, I build digital experiences that bring ideas to life. Let&apos;s create something meaningful together.</h6>
+          <h6 className="h6"> With roots in brand design and strategy, I build <span className={styles.highlight}>visual identities</span> that bring ideas to life. Let&apos;s create something <span className={styles.highlight}>meaningful</span> together.</h6>
         </div>
       )}
 

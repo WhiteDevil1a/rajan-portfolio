@@ -24,9 +24,9 @@ function Projects() {
   const projectRefs = useRef([]);
 
   const newProjects = [
-    { ...projects[0], title: 'Art & Illustration', id: 'custom-1' },
-    { ...projects[3], title: 'Graphic Design', id: 'custom-2' },
-    { ...projects[1], title: 'Content Creation', id: 'custom-3' },
+    { ...projects[0], title: 'Visual Identity', id: 'custom-1' },
+    { ...projects[3], title: 'Brand Systems', id: 'custom-2' },
+    { ...projects[1], title: 'Design Tools', id: 'custom-3' },
     { ...projects[2], title: 'Web Development', id: 'custom-4' },
   ];
 

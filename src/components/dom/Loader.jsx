@@ -164,7 +164,7 @@ function Loader() {
         {!introOut && (
           <div className={styles.shortNameContainer}>
             <h2 ref={shortNameRef} className={clsx(styles.shortName, 'h2')}>
-              Call me Raj
+              Call me <span className={styles.highlight}>Raj</span>
             </h2>
           </div>
         )}

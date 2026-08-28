@@ -1,0 +1,941 @@
+// Brand Tools — white surface UI matching the existing website design system
+// Reference: About page uses background-color: var(--white) with inset box-shadow margins
+// Colors: --white: #f0f4f1 | --black: #28282b | --brandColor: #ff2828
+
+@import '@src/styles/functions.scss';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PAGE ROOT — white content surface over the existing deep background
+// ─────────────────────────────────────────────────────────────────────────────
+
+.brandToolsRoot {
+  background-color: var(--white);
+  color: var(--black);
+  // Clear the fixed header — comfortable clearance, not too much gap
+  padding-top: calc(var(--layout-columns-gap) * 2.8 + 1vw);
+  padding-bottom: calc(var(--layout-columns-gap) * 4);
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  // Inset box-shadow creates the white surface with atmospheric background peeking around edges
+  box-shadow:
+    inset 0 calc(var(--layout-columns-gap) * 2.1) 0 0 var(--white),
+    inset calc(var(--layout-margin) * -1.05) 0 0 0 var(--white),
+    inset 0 calc(var(--layout-columns-gap) * -2.1) 0 0 var(--white),
+    inset calc(var(--layout-margin) * 1.05) 0 0 0 var(--white),
+    0 0 0 calc(var(--layout-columns-gap) * 0.045) var(--white);
+
+  @include mobile {
+    padding-top: calc(var(--layout-columns-gap) * 2.5 + 3vw);
+    padding-bottom: calc(var(--layout-columns-gap) * 3);
+    box-shadow:
+      inset 0 calc(var(--layout-columns-gap) * 2.1) 0 0 var(--white),
+      inset calc(var(--layout-margin) * -1.0265) 0 0 0 var(--white),
+      inset 0 calc(var(--layout-columns-gap) * -2.1) 0 0 var(--white),
+      inset calc(var(--layout-margin) * 1.0265) 0 0 0 var(--white),
+      0 0 0 calc(var(--layout-columns-gap) * 0.04) var(--white);
+  }
+}
+
+// Last section gets rounded bottom corners (matches global.scss pattern)
+.brandToolsRoot:last-child {
+  border-bottom-left-radius: var(--layout-columns-gap);
+  border-bottom-right-radius: var(--layout-columns-gap);
+
+  @include mobile {
+    border-bottom-left-radius: calc(var(--layout-columns-gap) * 0.5);
+    border-bottom-right-radius: calc(var(--layout-columns-gap) * 0.5);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HERO SECTION — typography-led, spacious, editorial
+// ─────────────────────────────────────────────────────────────────────────────
+
+.heroSection {
+  padding-bottom: calc(var(--layout-columns-gap) * 2);
+  border-bottom: 1px solid rgba(40, 40, 43, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(40, 40, 43, 0.5);
+  margin-bottom: calc(var(--layout-columns-gap) * 1.25);
+  font-weight: 550;
+
+  a {
+    transition: color 0.2s ease;
+    &:hover {
+      color: var(--brandColor);
+    }
+  }
+
+  .separator {
+    color: rgba(40, 40, 43, 0.25);
+  }
+
+  .current {
+    color: var(--black);
+    font-weight: 650;
+  }
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: calc(var(--layout-columns-gap) * 0.75);
+}
+
+.toolNumber {
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: var(--brandColor);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.toolCategoryBadge {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.7rem;
+  border-radius: 3px;
+  background: rgba(40, 40, 43, 0.07);
+  color: rgba(40, 40, 43, 0.7);
+  font-weight: 650;
+  display: inline-block;
+}
+
+.heroTitle {
+  font-size: 3.8vw;
+  line-height: 1.12;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 0.75rem;
+  word-break: break-word;
+
+  @include mobile {
+    font-size: 7.2vw;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.2vw;
+  line-height: 1.55;
+  color: rgba(40, 40, 43, 0.65);
+  max-width: 54rem;
+  margin-bottom: calc(var(--layout-columns-gap) * 1.25);
+  font-weight: 550;
+
+  @include mobile {
+    font-size: 3.4vw;
+    line-height: 1.5;
+  }
+}
+
+.privacyNote {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: rgba(40, 40, 43, 0.5);
+  font-weight: 550;
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #16a34a;
+    flex-shrink: 0;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BRAND KIT BANNER — subtle, integrated into white surface
+// ─────────────────────────────────────────────────────────────────────────────
+
+.brandKitBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba(255, 40, 40, 0.04);
+  border: 1px solid rgba(255, 40, 40, 0.2);
+  border-radius: 6px;
+  margin-bottom: calc(var(--layout-columns-gap) * 1.5);
+  font-size: 0.85rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bannerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: rgba(40, 40, 43, 0.8);
+  font-weight: 550;
+
+  .check {
+    color: #16a34a;
+    font-weight: bold;
+  }
+}
+
+.bannerLink {
+  color: var(--brandColor);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-size: 0.82rem;
+
+  &:hover {
+    color: #c01a1a;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WORKSPACE — controls + preview panels in the white surface environment
+// ─────────────────────────────────────────────────────────────────────────────
+
+.workspaceLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--layout-columns-gap) * 1.5);
+  margin-top: calc(var(--layout-columns-gap) * 1.5);
+  width: 100%;
+  box-sizing: border-box;
+
+  @include desktop {
+    grid-template-columns: 420px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+// Panels use subtle border instead of dark background
+.controlsPanel {
+  background: rgba(40, 40, 43, 0.03);
+  border: 1px solid rgba(40, 40, 43, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+
+  @include mobile {
+    padding: 1.1rem;
+  }
+}
+
+.previewPanel {
+  background: rgba(40, 40, 43, 0.02);
+  border: 1px solid rgba(40, 40, 43, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+
+  @include mobile {
+    padding: 1.1rem;
+  }
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(40, 40, 43, 0.08);
+
+  h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(40, 40, 43, 0.65);
+    margin: 0;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FORM INPUTS — light, minimal
+// ─────────────────────────────────────────────────────────────────────────────
+
+.formGroup {
+  margin-bottom: 1.1rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 650;
+    margin-bottom: 0.4rem;
+    color: rgba(40, 40, 43, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .labelNote {
+    font-size: 0.72rem;
+    font-weight: 550;
+    color: rgba(40, 40, 43, 0.45);
+    margin-left: 0.4rem;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+}
+
+.textInput,
+.selectInput,
+.textareaInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid rgba(40, 40, 43, 0.18);
+  border-radius: 5px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  color: var(--black);
+  outline: none;
+  font-weight: 550;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+
+  &:focus {
+    border-color: var(--brandColor);
+    box-shadow: 0 0 0 2px rgba(255, 40, 40, 0.15);
+  }
+
+  &::placeholder {
+    color: rgba(40, 40, 43, 0.35);
+  }
+}
+
+.textareaInput {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.selectInput {
+  appearance: auto;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BUTTONS — match site's button language
+// ─────────────────────────────────────────────────────────────────────────────
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--brandColor);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 1.3rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease, transform 0.15s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: #c71c1c;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--black);
+  border: 1px solid rgba(40, 40, 43, 0.2);
+  border-radius: 5px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    border-color: rgba(40, 40, 43, 0.4);
+    background: rgba(40, 40, 43, 0.04);
+  }
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: rgba(40, 40, 43, 0.6);
+  border: none;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 550;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--black);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LANDING PAGE TOOL GRID
+// ─────────────────────────────────────────────────────────────────────────────
+
+.categorySection {
+  margin-top: calc(var(--layout-columns-gap) * 2.5);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.categoryTitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brandColor);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(40, 40, 43, 0.1);
+  }
+}
+
+.toolGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  margin-bottom: calc(var(--layout-columns-gap) * 2);
+  border: 1px solid rgba(40, 40, 43, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.toolCard {
+  background: var(--white);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--black);
+  position: relative;
+  border-right: 1px solid rgba(40, 40, 43, 0.1);
+  border-bottom: 1px solid rgba(40, 40, 43, 0.1);
+  transition: background 0.2s ease;
+  box-sizing: border-box;
+
+  &:hover {
+    background: rgba(255, 40, 40, 0.03);
+
+    .toolCardArrow {
+      transform: translateX(3px);
+      color: var(--brandColor);
+    }
+
+    .toolCardTitle {
+      color: var(--brandColor);
+    }
+  }
+}
+
+.toolCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.toolCardTitle {
+  font-size: 1.1rem;
+  font-weight: 650;
+  margin-bottom: 0.4rem;
+  color: var(--black);
+  transition: color 0.2s ease;
+}
+
+.toolCardDesc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(40, 40, 43, 0.55);
+  margin-bottom: 1.25rem;
+  flex: 1;
+  font-weight: 550;
+}
+
+.toolCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(40, 40, 43, 0.07);
+  padding-top: 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: rgba(40, 40, 43, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toolCardArrow {
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: rgba(40, 40, 43, 0.3);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EDUCATIONAL SECTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
+.educationalSection {
+  margin-top: calc(var(--layout-columns-gap) * 3);
+  padding-top: calc(var(--layout-columns-gap) * 2);
+  border-top: 1px solid rgba(40, 40, 43, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sectionHeading {
+  font-size: 1.9vw;
+  font-weight: 650;
+  margin-bottom: calc(var(--layout-columns-gap) * 1.5);
+  color: var(--black);
+
+  @include mobile {
+    font-size: 5.2vw;
+  }
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  margin-bottom: calc(var(--layout-columns-gap) * 2);
+  border: 1px solid rgba(40, 40, 43, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stepCard {
+  background: rgba(40, 40, 43, 0.02);
+  padding: 1.5rem;
+  border-right: 1px solid rgba(40, 40, 43, 0.08);
+  border-bottom: 1px solid rgba(40, 40, 43, 0.08);
+  box-sizing: border-box;
+
+  .stepNum {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--brandColor);
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 650;
+    margin-bottom: 0.4rem;
+    color: var(--black);
+  }
+
+  p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(40, 40, 43, 0.55);
+    font-weight: 550;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FAQ ACCORDION
+// ─────────────────────────────────────────────────────────────────────────────
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(var(--layout-columns-gap) * 2);
+  border: 1px solid rgba(40, 40, 43, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.faqItem {
+  background: var(--white);
+  border-bottom: 1px solid rgba(40, 40, 43, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.25rem;
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--black);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s ease;
+  box-sizing: border-box;
+
+  &:hover {
+    color: var(--brandColor);
+  }
+}
+
+.faqAnswer {
+  padding: 0 1.25rem 1.1rem 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: rgba(40, 40, 43, 0.6);
+  font-weight: 550;
+  box-sizing: border-box;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RELATED TOOLS
+// ─────────────────────────────────────────────────────────────────────────────
+
+.relatedSection {
+  margin-top: calc(var(--layout-columns-gap) * 3);
+  padding-top: calc(var(--layout-columns-gap) * 2);
+  border-top: 1px solid rgba(40, 40, 43, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  border: 1px solid rgba(40, 40, 43, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: calc(var(--layout-columns-gap) * 1.25);
+  width: 100%;
+  box-sizing: border-box;
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.relatedCard {
+  background: var(--white);
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--black);
+  border-right: 1px solid rgba(40, 40, 43, 0.08);
+  border-bottom: 1px solid rgba(40, 40, 43, 0.08);
+  transition: background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  box-sizing: border-box;
+
+  &:hover {
+    background: rgba(255, 40, 40, 0.03);
+
+    .relatedCardTitle {
+      color: var(--brandColor);
+    }
+  }
+}
+
+.relatedCardNum {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--brandColor);
+  font-weight: 700;
+}
+
+.relatedCardTitle {
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--black);
+  transition: color 0.15s ease;
+}
+
+.relatedCardDesc {
+  font-size: 0.8rem;
+  color: rgba(40, 40, 43, 0.5);
+  line-height: 1.5;
+  font-weight: 550;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOAST NOTIFICATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+.toastContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--black);
+  color: var(--white);
+  padding: 0.85rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 40, 40, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  font-size: 0.88rem;
+  font-weight: 550;
+  animation: slideUp 0.22s ease-out;
+
+  @include mobile {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    justify-content: center;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COLOR PICKER INPUT component
+// ─────────────────────────────────────────────────────────────────────────────
+
+.colorPickerRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 650;
+    color: rgba(40, 40, 43, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    min-width: 100px;
+  }
+
+  .colorSwatch {
+    width: 34px;
+    height: 34px;
+    border-radius: 4px;
+    border: 1px solid rgba(40, 40, 43, 0.15);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+
+    input[type='color'] {
+      position: absolute;
+      inset: 0;
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  .hexInput {
+    flex: 1;
+    min-width: 80px;
+    background: #fff;
+    border: 1px solid rgba(40, 40, 43, 0.15);
+    border-radius: 4px;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+    color: var(--black);
+    font-family: monospace;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: var(--brandColor);
+    }
+  }
+
+  .copyBtn {
+    background: transparent;
+    border: 1px solid rgba(40, 40, 43, 0.15);
+    border-radius: 4px;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.75rem;
+    color: rgba(40, 40, 43, 0.5);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 650;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      border-color: rgba(40, 40, 43, 0.3);
+      color: var(--black);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LANDING PAGE HERO VARIANT
+// ─────────────────────────────────────────────────────────────────────────────
+
+.landingHero {
+  padding-bottom: calc(var(--layout-columns-gap) * 2.5);
+  border-bottom: 1px solid rgba(40, 40, 43, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+
+  .landingCategory {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--brandColor);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+
+  .landingTitle {
+    font-size: 4.2vw;
+    line-height: 1.1;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 1rem;
+    word-break: break-word;
+
+    @include mobile {
+      font-size: 7.6vw;
+    }
+  }
+
+  .landingSubtitle {
+    font-size: 1.2vw;
+    line-height: 1.55;
+    color: rgba(40, 40, 43, 0.65);
+    max-width: 52rem;
+    font-weight: 550;
+    margin-bottom: calc(var(--layout-columns-gap) * 1.25);
+
+    @include mobile {
+      font-size: 3.4vw;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MISC UTILITY — dividers, notes, inline badges
+// ─────────────────────────────────────────────────────────────────────────────
+
+.divider {
+  height: 1px;
+  background: rgba(40, 40, 43, 0.08);
+  margin: calc(var(--layout-columns-gap) * 1.5) 0;
+  width: 100%;
+}
+
+.inlineNote {
+  font-size: 0.78rem;
+  color: rgba(40, 40, 43, 0.5);
+  font-weight: 550;
+  line-height: 1.5;
+}
+
+.accentText {
+  color: var(--brandColor);
+}
+
+.mutedText {
+  color: rgba(40, 40, 43, 0.55);
+}

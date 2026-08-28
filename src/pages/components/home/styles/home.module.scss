@@ -108,4 +108,8 @@
     left: var(--layout-margin);
     width: calc(100% - 2 * var(--layout-margin));
   }
+
+  .highlight {
+    color: var(--brandColor) !important;
+  }
 }

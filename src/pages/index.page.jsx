@@ -7,22 +7,27 @@ import Clients from '@src/pages/components/clients/Index';
 import CustomHead from '@src/components/dom/CustomHead';
 
 const seo = {
-  title: 'Rajan Bhatta - Entrepreneur & Tech Enthusiast Portfolio',
+  title: 'Rajan Bhatta - Brand Designer & Visual Identity Strategist',
   description:
-    'Rajan Bhatta is a multi-disciplinary entrepreneur, business strategist, and tech enthusiast from Nepal with experience across startups, technology, marketing, and creative industries.',
+    'Rajan Bhatta (brandwithrajan) is a brand designer from Nepal specializing in visual identity, brand systems, and design strategy — also an entrepreneur building ventures across tech and marketing.',
   keywords: [
     'Rajan Bhatta',
+    'Brand Designer',
+    'Visual Identity',
+    'Brand Systems',
+    'Brand Strategist Nepal',
+    'Color Strategy',
+    'Brand Identity',
+    'Rebrand',
     'brandwithrajan',
+    'Brand Design Nepal',
+    'Visual Identity Designer',
     'Raj',
     'Entrepreneur',
     'Business Strategist',
     'Tech Enthusiast',
     'Portfolio',
     'Web Development',
-    'UI/UX Design',
-    'MERN Stack',
-    'Next.js',
-    'Laravel',
     'Nepal',
     'Startup Founder',
     'Digital Marketing',

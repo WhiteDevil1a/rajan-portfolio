@@ -59,26 +59,26 @@ function About() {
         {isMobile ? renderImageContainer() : null}
         <div className={clsx(styles.descWrapper)} ref={animatedImageRef}>
           <AppearTitle>
-            <div className="p-l">“My continuous journey as a self-taught</div>
-            <div className="p-l">developer empowers me to build businesses</div>
+            <div className="p-l">"My continuous journey as a <span className={styles.highlight}>self-taught</span></div>
+            <div className="p-l"><span className={styles.highlight}>brand designer</span> empowers me to build identities</div>
             <div className="p-l">creatively and efficiently, turning bold</div>
-            <div className="p-l">ideas into real-world digital solutions”</div>
+            <div className="p-l">ideas into real-world <span className={styles.highlight}>brand solutions</span>"</div>
           </AppearTitle>
         </div>
         {!isMobile ? renderImageContainer() : null}
         <div className={clsx(styles.descWrapperBottom)}>
           {!isMobile ? (
             <AppearTitle key="desktop-descWrapperBottom">
-              <h6 className="h6">A passionate entrepreneur and builder hailing from Nepal.</h6>
-              <h6 className="h6">With a strong eye for strategy and a true dedication to</h6>
-              <h6 className="h6">creating meaningful digital ventures. I specialize in</h6>
-              <h6 className="h6">bringing bold ideas to life with technology, marketing,</h6>
-              <h6 className="h6">and creative thinking.</h6>
+              <h6 className="h6">A passionate <span className={styles.highlight}>brand designer</span> hailing from <span className={styles.highlight}>Nepal</span>.</h6>
+              <h6 className="h6">With a strong eye for identity and strategy and a true dedication to</h6>
+              <h6 className="h6">creating <span className={styles.highlight}>meaningful brand systems</span>. I specialize in</h6>
+              <h6 className="h6">bringing bold ideas to life with design, color strategy,</h6>
+              <h6 className="h6">and creative thinking — while also building ventures across tech and marketing.</h6>
             </AppearTitle>
           ) : (
             <AppearTitle key="mobile-descWrapperBottom">
               <h6 className="h6">
-                A passionate entrepreneur and builder hailing from Nepal. With a strong eye for strategy and a true dedication to creating meaningful digital ventures. I specialize in bringing bold ideas to life with technology, marketing, and creative thinking.
+                A passionate <span className={styles.highlight}>brand designer</span> hailing from <span className={styles.highlight}>Nepal</span>. With a strong eye for identity and strategy and a true dedication to creating <span className={styles.highlight}>meaningful brand systems</span>. I specialize in bringing bold ideas to life with design, color strategy, and creative thinking — while also building ventures across tech and marketing.
               </h6>
             </AppearTitle>
           )}
