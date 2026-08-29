@@ -66,10 +66,10 @@ function Band({ maxSpeed = 50, minSpeed = 10, name, intersected }) {
   const ang = new THREE.Vector3();
   const rot = new THREE.Vector3();
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 2, linearDamping: 2 };
-  const { nodes, materials } = useGLTF(`/model/Tag.glb`);
+  const { nodes, materials } = useGLTF(`/3d-badges/Tag.glb`);
 
-  const texture = useTexture(`/model/Band${name}.png`);
-  const tag = useTexture(`/model/Tag${name}.png`);
+  const texture = useTexture(`/3d-badges/Band${name}.png`);
+  const tag = useTexture(`/3d-badges/Tag${name}.png`);
 
   const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
 

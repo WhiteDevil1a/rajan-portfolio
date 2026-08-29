@@ -50,7 +50,7 @@ export default function MagicBall({ roughness, color, isSphere, text }) {
   return (
     <View>
       <Marble roughness={roughness} color={color} isSphere={isSphere} text={text} />
-      <Environment files={isSphere ? '/other/warehouse.hdr' : '/other/studio_small_09_1k.hdr'} blur={1} />
+      <Environment files={isSphere ? '/textures-environments/warehouse.hdr' : '/textures-environments/studio_small_09_1k.hdr'} blur={1} />
     </View>
   );
 }
@@ -147,9 +147,9 @@ function MagicMarbleMaterial({ roughness, color, texture, isSphere }) {
   const rayOrigPos = DEFAULT_RAY_ORIG_POS;
   THREE.Cache.enabled = true;
   const [baseTexture1, baseTexture2, heightVolumeTexture1] = useTexture([
-    '/other/noise1.png',
-    '/other/peakpx.jpg',
-    '/other/noise2.png',
+    '/textures-environments/noise1.png',
+    '/textures-environments/peakpx.jpg',
+    '/textures-environments/noise2.png',
   ]);
 
   const configureTexture = (texture) => {

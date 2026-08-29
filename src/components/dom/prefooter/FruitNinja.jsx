@@ -66,28 +66,28 @@ function FruitNinja() {
   const { viewport } = useThree();
   const isMobile = useIsMobile();
   const textures = useTexture([
-    '/logos/threejs.webp',
-    '/logos/bug.webp',
-    '/logos/docker.webp',
-    '/logos/git.webp',
-    '/logos/gsap.webp',
-    '/logos/nodejs.webp',
-    '/logos/npm.webp',
-    '/logos/react.webp',
-    '/logos/typescript.webp',
-    '/logos/vscode.webp',
+    '/tech-stack/threejs.webp',
+    '/tech-stack/bug.webp',
+    '/tech-stack/docker.webp',
+    '/tech-stack/git.webp',
+    '/tech-stack/gsap.webp',
+    '/tech-stack/nodejs.webp',
+    '/tech-stack/npm.webp',
+    '/tech-stack/react.webp',
+    '/tech-stack/typescript.webp',
+    '/tech-stack/vscode.webp',
   ]);
   const slicedTextures = useTexture([
-    '/logos/sliced/threejsSliced.webp',
-    '/logos/sliced/bugSliced.webp',
-    '/logos/sliced/dockerSliced.webp',
-    '/logos/sliced/gitSliced.webp',
-    '/logos/sliced/gsapSliced.webp',
-    '/logos/sliced/nodejsSliced.webp',
-    '/logos/sliced/npmSliced.webp',
-    '/logos/sliced/reactSliced.webp',
-    '/logos/sliced/typescriptSliced.webp',
-    '/logos/sliced/vscodeSliced.webp',
+    '/tech-stack/sliced/threejsSliced.webp',
+    '/tech-stack/sliced/bugSliced.webp',
+    '/tech-stack/sliced/dockerSliced.webp',
+    '/tech-stack/sliced/gitSliced.webp',
+    '/tech-stack/sliced/gsapSliced.webp',
+    '/tech-stack/sliced/nodejsSliced.webp',
+    '/tech-stack/sliced/npmSliced.webp',
+    '/tech-stack/sliced/reactSliced.webp',
+    '/tech-stack/sliced/typescriptSliced.webp',
+    '/tech-stack/sliced/vscodeSliced.webp',
   ]);
   const fruits = useFruitSpawner(viewport, textures, slicedTextures, isMobile);
 

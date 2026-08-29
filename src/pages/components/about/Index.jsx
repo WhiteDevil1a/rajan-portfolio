@@ -42,7 +42,7 @@ function About() {
 
   const renderImageContainer = () => (
     <div className={styles.imageContainer}>
-      <Image priority src="/rajan/front.webp" sizes="100%" fill alt="Rajan Bhatta" />
+      <Image priority src="/about-photos/front.webp" sizes="100%" fill alt="Rajan Bhatta" />
     </div>
   );
 

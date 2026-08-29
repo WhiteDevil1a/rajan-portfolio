@@ -13,7 +13,7 @@ export default function Index() {
       <Physics interpolate timeStep={1 / 60} gravity={[0, 0, 0]}>
         <FloatRigidBody transparentCount={isMobile ? 3 : 5} totalCount={isMobile ? 12 : 18} />
       </Physics>
-      <Environment files="/other/studio_small_09_1k.hdr" blur={1} />
+      <Environment files="/textures-environments/studio_small_09_1k.hdr" blur={1} />
     </View>
   );
 }
