@@ -9,7 +9,7 @@ import ToolFaq from '@src/components/brandTools/ToolFaq';
 const seo = {
   title: 'Free Brand Design Tools & Visual Identity System Suite | Rajan Bhatta',
   description:
-    '100% free professional brand design tools and visual identity generator suite by Rajan Bhatta. No login required. Build Brand Kits, extract color palettes, check WCAG contrast, generate gradients, business cards, email signatures, letterheads, and custom QR codes.',
+    '100% free professional brand design tools and visual identity generator suite by Rajan Bhatta. No login required. Build Brand Kits, extract color palettes, check WCAG contrast, generate gradients, business cards, email signatures, letterheads, custom QR codes, and search 3,000+ brand logos.',
   keywords: [
     'Free Brand Design Tools',
     '100% Free Brand Tools',
@@ -24,6 +24,9 @@ const seo = {
     'HTML Email Signature Generator',
     'Company Letterhead Generator',
     'Custom QR Code Generator',
+    'Brand Logo Search',
+    'Download Brand Logo SVG',
+    'Official Brand Colors',
     'Brand Guidelines Creator',
     'Brand Strategy Nepal',
     'Visual Identity Designer',
@@ -43,7 +46,7 @@ const LANDING_FAQS = [
   },
   {
     q: 'Are these tools completely free to use?',
-    a: 'Yes. All 8 tools are 100% free with no login required, no subscription limits, and no watermarks. High-resolution PNGs, vector SVGs, and print-ready PDFs can be exported instantly.',
+    a: 'Yes. All tools are 100% free with no login required, no subscription limits, and no watermarks. High-resolution PNGs, vector SVGs, and print-ready PDFs can be exported instantly.',
   },
   {
     q: 'Can I export Brand Guidelines and developer tokens?',
@@ -54,6 +57,7 @@ const LANDING_FAQS = [
 function BrandToolsLandingPage() {
   const foundationTools = BRAND_TOOLS.filter((t) => t.category === 'Brand Foundation');
   const assetTools = BRAND_TOOLS.filter((t) => t.category === 'Branded Assets');
+  const researchTools = BRAND_TOOLS.filter((t) => t.category === 'Brand Research');
 
   return (
     <div className={clsx(styles.brandToolsRoot, 'layout-block-inner')}>
@@ -125,6 +129,36 @@ function BrandToolsLandingPage() {
           ))}
         </div>
       </section>
+
+      {/* Brand Research Category */}
+      {researchTools.length > 0 && (
+        <section className={styles.categorySection}>
+          <div className={styles.categoryTitle}>
+            <span>Brand Research</span>
+          </div>
+          <div
+            className={styles.toolGrid}
+            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}
+          >
+            {researchTools.map((tool) => (
+              <Link key={tool.id} href={tool.href} className={styles.toolCard}>
+                <div>
+                  <div className={styles.toolCardTop}>
+                    <span className={styles.toolNumber}>{tool.number}</span>
+                    <span className={styles.toolCategoryBadge}>{tool.category}</span>
+                  </div>
+                  <h3 className={styles.toolCardTitle}>{tool.title}</h3>
+                  <p className={styles.toolCardDesc}>{tool.description}</p>
+                </div>
+                <div className={styles.toolCardFooter}>
+                  <span>Open Tool</span>
+                  <span className={styles.toolCardArrow}>→</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Ecosystem Workflow */}
       <div className={styles.educationalSection}>

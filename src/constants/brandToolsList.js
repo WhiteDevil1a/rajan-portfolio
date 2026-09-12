@@ -87,4 +87,15 @@ export const BRAND_TOOLS = [
     icon: 'qr-code',
     related: ['brand-kit', 'business-card', 'color-palette'],
   },
+  {
+    id: 'logo-search',
+    number: '09',
+    category: 'Brand Research',
+    title: 'Brand Logo Search',
+    href: '/brand-tools/logo',
+    tagline: 'Search 3,000+ official brand logos & hex colors',
+    description: "Find any brand's official logo SVG and exact hex color instantly. Copy SVG markup, copy hex code, or download SVG and PNG — all free, no login required.",
+    icon: 'search',
+    related: ['color-palette', 'brand-kit', 'color-contrast'],
+  },
 ];
