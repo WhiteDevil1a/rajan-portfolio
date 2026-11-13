@@ -99,7 +99,7 @@ function BrandToolsLandingPage() {
         </p>
         <div className={styles.privacyNote}>
           <span className={styles.dot} />
-          <span>17 Tools · 100% Free · No Login · Your files never leave your browser</span>
+          <span>{TOOLS.length} Tools · 100% Free · No Login · Your files never leave your browser</span>
         </div>
       </section>
 
@@ -107,7 +107,7 @@ function BrandToolsLandingPage() {
       <section className={styles.introSection}>
         <p className={styles.introText}>
           Building a consistent brand identity used to require expensive software and a large design team. This suite
-          gives you 17 professional-grade tools — completely free, with no account, no watermark, and no data ever
+          gives you {TOOLS.length} professional-grade tools — completely free, with no account, no watermark, and no data ever
           sent to a server.
         </p>
         <p className={styles.introText}>
@@ -126,9 +126,9 @@ function BrandToolsLandingPage() {
           package, and compress images with quality and target-size controls.
         </p>
         <p className={styles.introText}>
-          <strong>Nepali Tools</strong> are built for Devanagari script users: convert legacy Preeti font text to
-          standard Unicode, type Nepali phonetically or with an on-screen keyboard, and convert dates between Bikram
-          Sambat (BS) and Gregorian (AD) calendars with Nepali numerals and day names.
+          <strong>Nepali Tools</strong> are built for Devanagari script users: convert legacy Preeti text and full
+          Microsoft Word (.docx) documents to standard Unicode while preserving formatting, type Nepali phonetically
+          or with an on-screen keyboard, and convert dates between Bikram Sambat (BS) and Gregorian (AD) calendars.
         </p>
       </section>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import ToolLayout from '@src/components/brandTools/ToolLayout';
 import { preetiToUnicode, unicodeToPreeti } from '@src/lib/nepali/preeti';
 import { TOOLS_BY_ID } from '@src/data/tools';
@@ -109,6 +110,36 @@ function PreetiToUnicodePage() {
               Clear
             </button>
           </div>
+        {/* Banner cross-linking to Word document converter */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            padding: '1rem 1.25rem',
+            borderRadius: '8px',
+            background: 'rgba(230, 57, 70, 0.05)',
+            border: '1px solid rgba(230, 57, 70, 0.2)',
+            marginBottom: '1.5rem',
+          }}
+        >
+          <div>
+            <strong style={{ display: 'block', color: 'var(--color-text, #111)', fontSize: '0.95rem' }}>
+              📄 Have a Microsoft Word (.docx) file full of Preeti text?
+            </strong>
+            <span style={{ fontSize: '0.85rem', color: '#666' }}>
+              Convert the entire document to Unicode while keeping tables, bold/italic, font sizes, colors, and headers intact.
+            </span>
+          </div>
+          <Link
+            href="/brand-tools/preeti-word-to-unicode"
+            className={styles.secondaryBtn}
+            style={{ textDecoration: 'none', whiteSpace: 'nowrap', padding: '0.5rem 1rem' }}
+          >
+            Open Preeti Word (.docx) Converter →
+          </Link>
         </div>
 
         {/* Dual Textareas */}
