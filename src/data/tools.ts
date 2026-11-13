@@ -728,6 +728,150 @@ const nepaliTools: Tool[] = [
     relatedIds: ['preeti-to-unicode', 'nepali-unicode-typing'],
     schemaType: 'UtilitiesApplication',
   },
+  {
+    id: 'nepali-ocr',
+    number: '19',
+    category: 'Nepali Tools',
+    title: 'Nepali OCR – Image & PDF to Unicode Text',
+    tagline: 'Extract printed Nepali Devanagari text from images and scanned PDF documents',
+    description:
+      'Extract standard Nepali Unicode text from images (PNG, JPG, WebP) and multi-page PDF documents entirely in your browser using Tesseract OCR. Includes contrast stretching, binarization, deskewing, and .txt / .docx download.',
+    href: '/brand-tools/nepali-ocr',
+    seoTitle: 'Nepali OCR – Extract Nepali Text from Images & Scanned PDFs | Free',
+    seoDescription:
+      'Convert printed Nepali documents, photos, and scanned PDFs to editable Unicode text. 100% private in-browser OCR, no server upload, free .txt and .docx export.',
+    primaryKeyword: 'nepali ocr',
+    secondaryKeywords: [
+      'image to nepali text',
+      'nepali pdf to text',
+      'scanned nepali pdf to text',
+      'nepali text extractor',
+      'नेपाली ओसीआर',
+      'फोटोबाट नेपाली अक्षर',
+    ],
+    faq: [
+      {
+        q: 'Does this OCR support handwritten Nepali text?',
+        a: 'No. The Tesseract OCR Devanagari model is specifically trained on printed typefaces (books, official gazettes, typed notices, newspapers). Cursive or handwritten Nepali is not supported.',
+      },
+      {
+        q: 'Can I upload multi-page PDF documents?',
+        a: 'Yes. The tool renders each PDF page in your browser at high resolution, processes them sequentially, and shows live page-by-page progress.',
+      },
+      {
+        q: 'What if the extracted text looks like English gibberish?',
+        a: 'If the original document was typed in legacy Preeti font and converted to PDF, the underlying text layer may produce Preeti letters (e.g. g]kfn). Use our Preeti to Unicode tool to convert it to standard Devanagari with one click.',
+      },
+      {
+        q: 'Are my images or documents uploaded to any server?',
+        a: 'No. All OCR inference and PDF rendering execute entirely within your browser using WebAssembly and Web Workers. Your files never leave your device.',
+      },
+      {
+        q: 'How can I get the best recognition accuracy?',
+        a: 'Use clear, well-lit, high-contrast images. Enabling the built-in Binarization and Contrast Enhancement pre-processing options will sharpen letters and remove background shadows.',
+      },
+      {
+        q: 'What export formats are available?',
+        a: 'You can copy the extracted text to your clipboard, download it as a plain .txt file, or export a formatted Microsoft Word (.docx) document.',
+      },
+    ],
+    relatedIds: ['preeti-word-to-unicode', 'preeti-to-unicode', 'preeti-pdf-to-unicode'],
+    schemaType: 'UtilitiesApplication',
+  },
+  {
+    id: 'nepali-speech-to-text',
+    number: '20',
+    category: 'Nepali Tools',
+    title: 'Nepali Speech to Text – Voice Typing & Audio Transcription',
+    tagline: 'Convert spoken Nepali voice and audio recordings into Unicode Devanagari text',
+    description:
+      'Transcribe spoken Nepali in real time using your microphone or upload audio files (MP3, WAV, M4A, OGG). Powered by OpenAI Whisper in your browser with zero server uploads, live editing, and SRT subtitle export.',
+    href: '/brand-tools/nepali-speech-to-text',
+    seoTitle: 'Nepali Speech to Text – Free Voice Typing & Audio Transcription',
+    seoDescription:
+      'Convert Nepali voice recordings and audio files into Devanagari Unicode text. 100% in-browser AI with Whisper, private, microphone voice typing, and SRT subtitles.',
+    primaryKeyword: 'nepali speech to text',
+    secondaryKeywords: [
+      'nepali voice typing',
+      'audio to nepali text',
+      'nepali audio transcription',
+      'speak nepali to text',
+      'नेपाली भ्वाइस टाइपिङ',
+      'नेपाली आवाजलाई अक्षरमा',
+    ],
+    faq: [
+      {
+        q: 'How does in-browser speech recognition work without a server?',
+        a: 'We run OpenAI Whisper directly in your browser using Transformers.js and WebAssembly / WebGPU. The AI model weights are downloaded once, cached in your browser storage, and run completely locally on your device.',
+      },
+      {
+        q: 'How large is the model download?',
+        a: 'The default model (Whisper Tiny) is approximately 75 MB. It downloads once and stays cached in your browser so subsequent visits start instantly without re-downloading.',
+      },
+      {
+        q: 'Is my voice or audio recording uploaded to the internet?',
+        a: 'Never. No audio recording or transcript is ever uploaded to any server. Everything is decoded and transcribed strictly on your local machine.',
+      },
+      {
+        q: 'Which audio formats are supported for upload?',
+        a: 'You can record live with your microphone or upload MP3, WAV, M4A, OGG, and WebM audio files.',
+      },
+      {
+        q: 'How accurate is the transcription?',
+        a: 'Accuracy is highest on clear speech with minimal background noise. Accuracy may vary for fast speech, background music, or strong regional dialects. We strongly recommend reviewing the generated text before official use.',
+      },
+      {
+        q: 'Can I export subtitles for video editing?',
+        a: 'Yes. In addition to plain text (.txt) and clipboard copy, you can export timestamped SubRip Subtitle (.srt) files for video captions.',
+      },
+    ],
+    relatedIds: ['nepali-unicode-typing', 'nepali-ocr', 'preeti-to-unicode'],
+    schemaType: 'UtilitiesApplication',
+  },
+  {
+    id: 'preeti-pdf-to-unicode',
+    number: '21',
+    category: 'Nepali Tools',
+    title: 'Preeti PDF to Unicode Converter (Beta)',
+    tagline: 'Extract and convert selectable Preeti font text from PDF documents into standard Unicode',
+    description:
+      'Extract legacy Preeti font text from selectable PDF documents and convert it into universal Unicode Devanagari. Processes pages in-browser and exports to .txt and .docx. If your PDF is a scanned image, links directly to Nepali OCR.',
+    href: '/brand-tools/preeti-pdf-to-unicode',
+    seoTitle: 'Preeti PDF to Unicode Converter (Beta) – Free In-Browser Tool',
+    seoDescription:
+      'Convert legacy Preeti font PDF documents to modern Unicode Devanagari. 100% private in-browser extraction, page-by-page conversion, .docx and .txt download.',
+    primaryKeyword: 'preeti pdf to unicode',
+    secondaryKeywords: [
+      'convert preeti pdf to unicode',
+      'nepali pdf font converter',
+      'preeti font pdf to unicode',
+      'नेपाली पिडिएफ युनिकोडमा',
+    ],
+    faq: [
+      {
+        q: 'What is the difference between a selectable PDF and a scanned PDF?',
+        a: 'Selectable PDFs have an embedded digital text layer where you can highlight and copy words with your cursor. Scanned PDFs are photographs or flat scans of paper documents. This tool converts selectable Preeti PDFs; scanned PDFs require our Nepali OCR tool.',
+      },
+      {
+        q: 'Does this tool preserve the complex visual layout and columns of the PDF?',
+        a: 'This tool extracts the text content page by page and converts legacy font encoding into Unicode. Because PDF layouts use absolute coordinates rather than fluid document paragraphs, complex multi-column layouts and background graphics are not preserved.',
+      },
+      {
+        q: 'What if my PDF contains mixed English and Preeti?',
+        a: 'English runs formatted with fonts like Times New Roman, Arial, or Calibri are detected and left untouched. Only text mapped to legacy Preeti fonts is converted.',
+      },
+      {
+        q: 'Are my PDF files uploaded to a server?',
+        a: 'No. All PDF parsing and font mapping run in your browser using pdfjs-dist and our client-side Devanagari conversion engine.',
+      },
+      {
+        q: 'Can I download the converted text as a Word document?',
+        a: 'Yes. You can copy the converted text to your clipboard, download it as a plain .txt file, or export it as a Microsoft Word (.docx) file.',
+      },
+    ],
+    relatedIds: ['preeti-word-to-unicode', 'nepali-ocr', 'preeti-to-unicode'],
+    schemaType: 'UtilitiesApplication',
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

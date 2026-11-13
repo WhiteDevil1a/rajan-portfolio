@@ -14,6 +14,10 @@ This document enumerates third-party libraries, codecs, datasets, and fonts used
 | **imagetracerjs** | `^1.2.6` | Public Domain / Unlicense | [github.com/jankovicsandras/imagetracerjs](https://github.com/jankovicsandras/imagetracerjs) | Pure in-browser raster-to-vector tracing |
 | **vitest** | `^3.0.0` | MIT | [github.com/vitest-dev/vitest](https://github.com/vitest-dev/vitest) | Fast unit test runner for pure converters |
 | **@xmldom/xmldom** | `^0.8.10` | MIT | [github.com/xmldom/xmldom](https://github.com/xmldom/xmldom) | DOMParser / XMLSerializer for XML DOM processing in Node/tests |
+| **tesseract.js** | `^6.0.0` | Apache-2.0 | [github.com/naptha/tesseract.js](https://github.com/naptha/tesseract.js) | In-browser OCR engine running Nepali traineddata (`nep`) |
+| **pdfjs-dist** | `^3.11.174` | Apache-2.0 | [github.com/mozilla/pdf.js](https://github.com/mozilla/pdf.js) | Client-side PDF page rendering & text extraction |
+| **@xenova/transformers** | `^2.17.2` | Apache-2.0 | [github.com/xenova/transformers.js](https://github.com/xenova/transformers.js) | In-browser ML runtime for Whisper ASR model |
+| **OpenAI Whisper Models** | `tiny` & `base` | MIT | [huggingface.co/Xenova/whisper-tiny](https://huggingface.co/Xenova/whisper-tiny) | Multilingual speech-to-text ONNX model weights |
 | **Noto Sans Devanagari** | Web Font | SIL Open Font License (OFL) 1.1 | [fonts.google.com/specimen/Noto+Sans+Devanagari](https://fonts.google.com/specimen/Noto+Sans+Devanagari) | High-legibility Devanagari web font for Nepali tools |
 
 ---

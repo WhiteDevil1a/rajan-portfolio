@@ -28,6 +28,13 @@ const nextConfig = {
     if (!isServer) {
       // We're in the browser build, so we can safely exclude the sharp module
       config.externals.push('sharp');
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        canvas: false,
+        fs: false,
+        path: false,
+        crypto: false,
+      };
     }
     // shader support
     config.module.rules.push({

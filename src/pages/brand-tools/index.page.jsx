@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import CustomHead from '@src/components/dom/CustomHead';
-import { TOOLS_BY_CATEGORY, TOOL_CATEGORIES } from '@src/data/tools';
+import { TOOLS, TOOLS_BY_CATEGORY, TOOL_CATEGORIES } from '@src/data/tools';
 import styles from '@src/styles/brandTools.module.scss';
 import clsx from 'clsx';
 import ToolFaq from '@src/components/brandTools/ToolFaq';

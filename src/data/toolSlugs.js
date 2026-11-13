@@ -21,4 +21,7 @@ module.exports = [
   'preeti-word-to-unicode',
   'nepali-unicode-typing',
   'nepali-date-converter',
+  'nepali-ocr',
+  'nepali-speech-to-text',
+  'preeti-pdf-to-unicode',
 ];

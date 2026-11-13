@@ -110,6 +110,8 @@ function PreetiToUnicodePage() {
               Clear
             </button>
           </div>
+        </div>
+
         {/* Banner cross-linking to Word document converter */}
         <div
           style={{
