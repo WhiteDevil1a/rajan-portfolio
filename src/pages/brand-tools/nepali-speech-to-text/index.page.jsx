@@ -267,7 +267,7 @@ export default function NepaliSpeechToTextPage() {
         'Automatic SubRip (.srt) Subtitle Generation with timestamps for video captioning',
         'Export to Microsoft Word (.docx) with Devanagari complex script formatting and plain text (.txt)',
       ]}
-      longDescription={toolMeta.description}
+      longDescription={toolMeta.longDescription || toolMeta.description}
       faqs={toolMeta.faq}
       relatedToolIds={toolMeta.relatedIds}
     >

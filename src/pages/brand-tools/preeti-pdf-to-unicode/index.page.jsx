@@ -139,7 +139,7 @@ export default function PreetiPdfToUnicodePage() {
         'Export to Microsoft Word (.docx) and plain text (.txt)',
         'Direct integration with Nepali OCR for scanned image PDFs',
       ]}
-      longDescription={toolMeta.description}
+      longDescription={toolMeta.longDescription || toolMeta.description}
       faqs={toolMeta.faq}
       relatedToolIds={toolMeta.relatedIds}
     >

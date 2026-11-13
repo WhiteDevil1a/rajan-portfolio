@@ -268,7 +268,7 @@ export default function NepaliOcrPage() {
         'Export to Microsoft Word (.docx) with Devanagari complex script formatting and plain text (.txt)',
         'Direct integration with Preeti to Unicode converter for legacy font scans',
       ]}
-      longDescription={toolMeta.description}
+      longDescription={toolMeta.longDescription || toolMeta.description}
       faqs={toolMeta.faq}
       relatedToolIds={toolMeta.relatedIds}
     >
