@@ -5,7 +5,7 @@ import '@src/styles/global.css';
 
 import * as THREE from 'three';
 
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import { Analytics } from '@vercel/analytics/react';
 import Background from '@src/components/canvas/background/Index';
@@ -30,6 +30,10 @@ import useScroll from '@src/hooks/useScroll';
 import { useShallow } from 'zustand/react/shallow';
 import { useStore } from '@src/store';
 
+// Routes that show the animated intro loader (percentage counter).
+// All other routes get instant content — no overlay, no delay.
+const LOADER_ROUTES = ['/', '/about'];
+
 if (typeof window !== 'undefined') {
   gsap.defaults({ ease: 'none' });
   gsap.registerPlugin(ScrollTrigger);
@@ -46,11 +50,38 @@ if (typeof window !== 'undefined') {
 }
 
 function MyApp({ Component, pageProps, router }) {
-  const [lenis, setLenis, fluidColor, isAbout] = useStore(useShallow((state) => [state.lenis, state.setLenis, state.fluidColor, state.isAbout]));
+  const [
+    lenis,
+    setLenis,
+    fluidColor,
+    isAbout,
+    setIntroOut,
+    setIsLoading,
+    setIsAbout,
+    setSkipLoader,
+    setSiteReady,
+  ] = useStore(
+    useShallow((state) => [
+      state.lenis,
+      state.setLenis,
+      state.fluidColor,
+      state.isAbout,
+      state.setIntroOut,
+      state.setIsLoading,
+      state.setIsAbout,
+      state.setSkipLoader,
+      state.setSiteReady,
+    ]),
+  );
 
   const mainRef = useRef();
   const mainContainerRef = useRef();
   const layoutRef = useRef();
+
+  // Whether the current route uses the intro loader
+  const isLoaderRoute = LOADER_ROUTES.includes(router.pathname);
+  // Whether the current route is a brand-tools page (disable canvas on these)
+  const isBrandToolsRoute = router.pathname.startsWith('/brand-tools');
 
   useFoucFix();
   useScroll(() => ScrollTrigger.update());
@@ -66,7 +97,14 @@ function MyApp({ Component, pageProps, router }) {
     });
 
     setLenis(lenis);
-    lenis.stop();
+
+    if (isLoaderRoute) {
+      // Loader animation will call lenis.start() when complete
+      lenis.stop();
+    } else {
+      // On tool/other routes: scroll starts immediately, no loader needed
+      lenis.start();
+    }
 
     return () => {
       lenis.destroy();
@@ -86,10 +124,55 @@ function MyApp({ Component, pageProps, router }) {
     }
   }, 0);
 
+  // Sync loader and site-ready states on mount and on route changes
+  useIsomorphicLayoutEffect(() => {
+    setIsAbout(router.pathname === '/about');
+
+    if (!isLoaderRoute) {
+      setSkipLoader(true);
+      setIntroOut(true);
+      setIsLoading(false);
+      setSiteReady(true);
+
+      // Ensure main is fully visible — loader never ran so opacity is still 0
+      const main = mainRef.current;
+      if (main) {
+        gsap.set(main, {
+          opacity: 1,
+          x: '0px',
+          scale: 1,
+          border: 'none',
+          borderRadius: 0,
+          pointerEvents: 'auto',
+          height: 'auto',
+        });
+      }
+      if (layoutRef.current) {
+        gsap.set(layoutRef.current, { height: '100%', opacity: 1 });
+      }
+      gsap.set('header', { autoAlpha: 1 });
+      if (lenis) {
+        lenis.start();
+      }
+    } else {
+      setSkipLoader(false);
+    }
+  }, [router.pathname, isLoaderRoute, lenis]);
+
+  // Refresh ScrollTrigger after route changes so all trigger bounds recalculate
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [router.asPath]);
+
   const domElements = useMemo(
     () => (
       <>
-        <Loader />
+        {/* Loader only on designated routes */}
+        {isLoaderRoute && <Loader />}
+        {/* Fullscreen animated background shader for atmospheric margins and footer across all routes */}
         <div className={styles.background}>
           <Background />
         </div>
@@ -98,25 +181,26 @@ function MyApp({ Component, pageProps, router }) {
         <Analytics />
       </>
     ),
-    [],
+    [isLoaderRoute],
   );
 
   const canvasElements = useMemo(
-    () => (
-      <Canvas
-        gl={{
-          pixelRatio: 0.5,
-          outputColorSpace: isAbout === false ? THREE.LinearSRGBColorSpace : THREE.SRGBColorSpace,
-        }}
-        style={{ zIndex: 0 }}
-        resize={{ debounce: { resize: 0, scroll: 0 }, polyfill: undefined }}
-        className={styles.canvasContainer}
-        dpr={[0.5, 1.5]}
-      >
-        <View.Port />
-      </Canvas>
-    ),
-    [isAbout],
+    () =>
+      !isBrandToolsRoute ? (
+        <Canvas
+          gl={{
+            pixelRatio: 0.5,
+            outputColorSpace: isAbout === false ? THREE.LinearSRGBColorSpace : THREE.SRGBColorSpace,
+          }}
+          style={{ zIndex: 0 }}
+          resize={{ debounce: { resize: 0, scroll: 0 }, polyfill: undefined }}
+          className={styles.canvasContainer}
+          dpr={[0.5, 1.5]}
+        >
+          <View.Port />
+        </Canvas>
+      ) : null,
+    [isAbout, isBrandToolsRoute],
   );
 
   return (
@@ -124,26 +208,29 @@ function MyApp({ Component, pageProps, router }) {
       {domElements}
       <div ref={layoutRef} id="layout" className={styles.layout}>
         {canvasElements}
-        <Canvas
-          id="fluidCanvas"
-          flat
-          gl={{
-            antialias: false,
-            stencil: false,
-            depth: false,
-            pixelRatio: 0.1,
-          }}
-          style={{ mixBlendMode: 'difference', background: 'black' }}
-          linear
-          className={styles.canvasContainer}
-          eventSource={mainRef.current}
-          dpr={[0.1, 0.5]}
-        >
-          <EffectComposer>
-            <Fluid fluidColor={fluidColor} mainRef={mainRef} />
-          </EffectComposer>
-        </Canvas>
-        <main ref={mainRef} className={styles.main}>
+        {/* Fluid canvas — portfolio pages only */}
+        {!isBrandToolsRoute && (
+          <Canvas
+            id="fluidCanvas"
+            flat
+            gl={{
+              antialias: false,
+              stencil: false,
+              depth: false,
+              pixelRatio: 0.1,
+            }}
+            style={{ mixBlendMode: 'difference', background: 'black' }}
+            linear
+            className={styles.canvasContainer}
+            eventSource={mainRef.current}
+            dpr={[0.1, 0.5]}
+          >
+            <EffectComposer>
+              <Fluid fluidColor={fluidColor} mainRef={mainRef} />
+            </EffectComposer>
+          </Canvas>
+        )}
+        <main ref={mainRef} className={styles.main} style={!isLoaderRoute ? { opacity: 1 } : undefined}>
           <div ref={mainContainerRef} id="mainContainer" className={styles.mainContainer}>
             <Layout layoutRef={layoutRef} mainRef={mainRef} router={router}>
               <Component {...pageProps} />

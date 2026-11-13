@@ -9,7 +9,12 @@ const useIntersected = (ref, threshold = 0) => {
   const intersection = useIntersection(ref, intersectionOptions);
 
   useIsomorphicLayoutEffect(() => {
-    if (intersection?.isIntersecting && intersection?.boundingClientRect.top > 0) {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIntersected(true);
+      return;
+    }
+
+    if (intersection?.isIntersecting) {
       setIntersected(true);
     } else if (!intersection?.isIntersecting && intersection?.boundingClientRect.top > 0) {
       setIntersected(false);

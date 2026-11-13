@@ -11,6 +11,14 @@ export default class MyDocument extends Document {
           <link href="/fonts/NeueHaasDisplayMedium.woff2" as="font" type="font/woff2" />
           <link href="/fonts/NeueHaasDisplayRoman.woff2" as="font" type="font/woff2" />
           <link href="/fonts/NeueHaasDisplayRomanItalic.woff2" as="font" type="font/woff2" />
+
+          {/* Devanagari web font for Nepali tools (OFL licensed) */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

@@ -21,17 +21,20 @@ const GoTop = dynamic(() => import('@src/components/dom/GoTop'), { ssr: false })
 function Footer() {
   const isMobile = useIsMobile();
   const footerRef = useRef();
-  const [isLoading] = useStore(useShallow((state) => [state.isLoading]));
+  const [isLoading, siteReady] = useStore(useShallow((state) => [state.isLoading, state.siteReady]));
   const windowSize = useWindowSize();
 
+  const isReady = siteReady || !isLoading;
+
   useIsomorphicLayoutEffect(() => {
-    if (!isLoading) {
+    if (isReady && footerRef.current) {
       const setupFooterAnimation = () => {
         gsap.set(footerRef.current, { height: 'auto' });
         const allSections = document.querySelectorAll('#mainContainer section');
         if (allSections.length > 1) {
           const lastSection = allSections[allSections.length - 2];
-          if (footerRef.current.offsetHeight <= windowSize.height) {
+          const vh = windowSize.height || (typeof window !== 'undefined' ? window.innerHeight : 0);
+          if (vh > 0 && footerRef.current.offsetHeight <= vh) {
             gsap.set(footerRef.current, { yPercent: -50 });
             const uncover = gsap.timeline({ paused: true });
             gsap.set(footerRef.current, { height: '100.5svh' });
@@ -48,13 +51,14 @@ function Footer() {
               scrub: true,
               scroller: document?.querySelector('main'),
             });
+            ScrollTrigger.refresh();
           } else {
             gsap.set(footerRef.current, { transform: 'translate(0%, 0%)', height: 'auto' });
           }
         }
       };
 
-      setupFooterAnimation(footerRef, windowSize);
+      setupFooterAnimation();
     }
 
     return () => {
@@ -63,7 +67,7 @@ function Footer() {
         footerTrigger.kill();
       }
     };
-  }, [isLoading, windowSize.height]);
+  }, [isReady, windowSize.height]);
 
   return (
     <section ref={footerRef} className={clsx(styles.root, 'layout-grid-inner')} role="contentinfo">

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['page.jsx'],
+  pageExtensions: ['page.jsx', 'page.tsx', 'page.ts', 'page.js'],
   experimental: {
     // optimizeCss: true,
     // nextScriptWorkers: true,
@@ -66,6 +66,13 @@ const nextConfig = {
     {
       source: '/404',
       destination: '/',
+      permanent: true,
+    },
+    // Canonical host: always non-www
+    {
+      source: '/(.*)',
+      has: [{ type: 'host', value: 'www.rajanbhatta.com.np' }],
+      destination: 'https://rajanbhatta.com.np/:path*',
       permanent: true,
     },
   ],

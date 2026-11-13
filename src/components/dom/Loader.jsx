@@ -9,7 +9,17 @@ import { useShallow } from 'zustand/react/shallow';
 import { useStore } from '@src/store';
 
 function Loader() {
-  const [lenis, introOut, setIntroOut, setIsLoading, setIsAbout] = useStore(useShallow((state) => [state.lenis, state.introOut, state.setIntroOut, state.setIsLoading, state.setIsAbout]));
+  const [lenis, introOut, setIntroOut, setIsLoading, setIsAbout, skipLoader, setSiteReady] = useStore(
+    useShallow((state) => [
+      state.lenis,
+      state.introOut,
+      state.setIntroOut,
+      state.setIsLoading,
+      state.setIsAbout,
+      state.skipLoader,
+      state.setSiteReady,
+    ]),
+  );
 
   const progressRef = useRef(null);
   const fullNameRef = useRef(null);
@@ -18,6 +28,15 @@ function Loader() {
   const router = useRouter();
 
   useIsomorphicLayoutEffect(() => {
+    // Safety: if this route doesn't want the loader (skipLoader set by _app),
+    // hide the loader element immediately and bail out.
+    if (skipLoader) {
+      if (root.current) {
+        gsap.set(root.current, { autoAlpha: 0, pointerEvents: 'none' });
+      }
+      return undefined;
+    }
+
     let ctx;
     if (!introOut) {
       setIsAbout(router.asPath === '/about');
@@ -74,7 +93,11 @@ function Loader() {
                 duration: 1,
               });
             });
-            lenis.scrollTo(0, { force: true });
+
+            // Guard: lenis may be null if scroll was destroyed
+            if (lenis) {
+              lenis.scrollTo(0, { force: true });
+            }
             gsap.set(document?.getElementById('layout'), {
               height: '90%',
             });
@@ -135,7 +158,11 @@ function Loader() {
               onComplete: () => {
                 setIntroOut(true);
                 setIsLoading(false);
-                lenis.start();
+                setSiteReady(true);
+                // Guard: lenis may be null
+                if (lenis) {
+                  lenis.start();
+                }
               },
             });
           },
@@ -150,7 +177,11 @@ function Loader() {
         ctx.kill();
       }
     };
-  }, [lenis, introOut]);
+  }, [lenis, introOut, skipLoader]);
+
+  // When skipLoader is true this component is not rendered (gated in _app),
+  // but as a belt-and-suspenders guard return null here too.
+  if (skipLoader) return null;
 
   return (
     <div id="loader" ref={root} className={clsx(styles.root, 'layout-block-inner')}>
