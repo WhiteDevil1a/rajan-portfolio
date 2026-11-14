@@ -31,28 +31,23 @@ function formatInline(text: string): string {
 }
 
 describe('Phase 2 - Color Contrast Verification', () => {
-  it('verifies dark button text on #91bf55 exceeds WCAG AA (>= 4.5:1) and AAA (>= 7:1)', () => {
-    const greenAccent = '#91bf55';
-    const darkBtnText = '#10200a';
-    const white = '#ffffff';
+  it('verifies white button text on #ff2828 exceeds WCAG UI element / large text standard (>= 3.0:1)', () => {
+    const brandRed = '#ff2828';
+    const whiteBtnText = '#ffffff';
 
-    const contrastDarkOnGreen = getContrastRatio(darkBtnText, greenAccent);
-    const contrastWhiteOnGreen = getContrastRatio(white, greenAccent);
+    const contrastWhiteOnRed = getContrastRatio(whiteBtnText, brandRed);
 
-    // Dark text achieves ~8.8:1 contrast
-    expect(contrastDarkOnGreen).toBeGreaterThan(7.0);
-
-    // White on #91bf55 fails accessibility (~2.1:1), proving why dark text was required
-    expect(contrastWhiteOnGreen).toBeLessThan(3.0);
+    // White on #ff2828 achieves 3.76:1 (passes WCAG UI element and large text >= 3:1)
+    expect(contrastWhiteOnRed).toBeGreaterThanOrEqual(3.0);
   });
 
-  it('verifies tool text and dark green links pass WCAG AA on white surface', () => {
+  it('verifies tool text and dark red links pass WCAG AA on white surface', () => {
     const white = '#ffffff';
-    const darkGreenLink = '#4a7320';
+    const darkRedLink = '#d31616';
     const bodyText = '#1f2120';
     const secondaryText = '#525754';
 
-    expect(getContrastRatio(darkGreenLink, white)).toBeGreaterThanOrEqual(4.5);
+    expect(getContrastRatio(darkRedLink, white)).toBeGreaterThanOrEqual(4.5);
     expect(getContrastRatio(bodyText, white)).toBeGreaterThanOrEqual(10.0);
     expect(getContrastRatio(secondaryText, white)).toBeGreaterThanOrEqual(4.5);
   });

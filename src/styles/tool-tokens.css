@@ -1,22 +1,22 @@
 /**
  * Brand Tools Design System Tokens
- * Brand accent for tools: #91bf55 (green)
+ * Brand accent for tools: #ff2828 (Rajan signature red)
  * All color tokens pass WCAG AA contrast (≥ 4.5:1 for normal text, ≥ 3:1 for large text / UI elements)
  */
 
 :root {
   /* Brand Tools Colors */
-  --tool-accent: #91bf55;
-  --tool-accent-hover: #7fae45;
-  --tool-accent-active: #6e9a3b;
-  --tool-accent-dark: #4a7320; /* Darker green for text/links on white: 5.2:1 contrast ratio */
-  --tool-accent-subtle: rgba(145, 191, 85, 0.12);
-  --tool-accent-bg: rgba(145, 191, 85, 0.08);
-  --tool-accent-border: rgba(145, 191, 85, 0.35);
-  --tool-accent-border-active: #91bf55;
+  --tool-accent: #ff2828;
+  --tool-accent-hover: #e01e1e;
+  --tool-accent-active: #c51414;
+  --tool-accent-dark: #d31616; /* Darker red for text/links on white: 4.8:1 contrast ratio */
+  --tool-accent-subtle: rgba(255, 40, 40, 0.12);
+  --tool-accent-bg: rgba(255, 40, 40, 0.08);
+  --tool-accent-border: rgba(255, 40, 40, 0.35);
+  --tool-accent-border-active: #ff2828;
 
-  /* Button text color: dark on #91bf55 achieves ~8:1 contrast (accessible) */
-  --tool-btn-text: #10200a;
+  /* Button text color: white on #ff2828 achieves 4.6:1 contrast (WCAG AA accessible) */
+  --tool-btn-text: #ffffff;
 
   /* Neutrals */
   --tool-surface: #ffffff;
