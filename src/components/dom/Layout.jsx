@@ -39,7 +39,10 @@ function Layout({ children, layoutRef, mainRef, router }) {
           setIsAbout(router.asPath === '/about');
           setIsLoading(false);
           setSiteReady(true);
-          if (lenis) lenis.start();
+          if (lenis) {
+            lenis.start();
+            lenis.resize();
+          }
           if (mainRef.current) {
             gsap.set(mainRef.current, {
               opacity: 1,
@@ -146,7 +149,6 @@ function Layout({ children, layoutRef, mainRef, router }) {
       if (introOut) {
         if (enterTimelineRef.current) enterTimelineRef.current.pause();
 
-        if (lenis) lenis.stop();
         if (isMenuOpen) {
           setIsMenuOpen(false);
         }
@@ -154,9 +156,12 @@ function Layout({ children, layoutRef, mainRef, router }) {
         // On routes without a loader, skip the full GSAP slide choreography
         if (skipLoader) {
           setIsLoading(true);
-          if (lenis) lenis.scrollTo(0, { force: true });
+          if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
+          if (mainRef.current) mainRef.current.scrollTop = 0;
           return;
         }
+
+        if (lenis) lenis.stop();
 
         if (isEntering === false) {
           const tl = gsap.timeline({

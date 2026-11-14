@@ -134,15 +134,15 @@ function ToolLayout({
         </div>
       </section>
 
+      {/* Interactive tool widget (client-only) — immediately under H1/subtitle above the fold */}
+      <div style={{ marginTop: 'calc(var(--layout-columns-gap) * 1)' }}>{children}</div>
+
       {/* Brand Kit Integration Banner */}
       {showBrandKitBanner && (
         <div style={{ marginTop: 'calc(var(--layout-columns-gap) * 1.5)' }}>
           <BrandKitBanner toolName={title} />
         </div>
       )}
-
-      {/* Interactive tool widget (client-only) */}
-      <div style={{ marginTop: 'calc(var(--layout-columns-gap) * 1)' }}>{children}</div>
 
       {/* How to use — ordered list (3–5 steps) */}
       {howItWorks.length > 0 && (

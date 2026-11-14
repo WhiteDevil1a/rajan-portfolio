@@ -159,6 +159,139 @@ function MyApp({ Component, pageProps, router }) {
     }
   }, [router.pathname, isLoaderRoute, lenis]);
 
+  const scrollPositions = useRef(new Map());
+  const isPopStateRef = useRef(false);
+
+  // Track browser back/forward buttons (popstate events)
+  useEffect(() => {
+    const handlePopState = () => {
+      isPopStateRef.current = true;
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Save current scroll position before navigating away
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      if (!isPopStateRef.current) {
+        const currentScroll = lenis ? lenis.scroll : (mainRef.current ? mainRef.current.scrollTop : window.scrollY);
+        scrollPositions.current.set(router.asPath, currentScroll);
+      }
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+    };
+  }, [router.asPath, router.events, lenis]);
+
+  // Handle scroll position and focus restoration after route changes
+  useEffect(() => {
+    const handleRouteChangeComplete = (url) => {
+      const isPop = isPopStateRef.current;
+      isPopStateRef.current = false;
+
+      const hash = window.location.hash || (url && url.includes('#') ? '#' + url.split('#')[1] : null);
+
+      if (isPop) {
+        // PopState (Back / Forward): restore previously saved scroll position
+        const savedPos = scrollPositions.current.get(url) ?? 0;
+        requestAnimationFrame(() => {
+          if (lenis) {
+            lenis.resize();
+            lenis.scrollTo(savedPos, { immediate: true });
+          }
+          if (mainRef.current) {
+            mainRef.current.scrollTop = savedPos;
+          }
+          ScrollTrigger.refresh();
+        });
+      } else if (hash) {
+        // Hash navigation: scroll to target element with fixed header offset
+        requestAnimationFrame(() => {
+          const target = document.querySelector(hash);
+          if (target) {
+            const header = document.querySelector('header');
+            const offset = (header ? header.getBoundingClientRect().height : 60) + 24;
+            if (lenis) {
+              lenis.resize();
+              lenis.scrollTo(target, { offset: -offset, immediate: true });
+            } else if (mainRef.current) {
+              const targetTop = target.getBoundingClientRect().top + mainRef.current.scrollTop - offset;
+              mainRef.current.scrollTop = targetTop;
+            }
+          }
+          ScrollTrigger.refresh();
+        });
+      } else {
+        // Standard client-side navigation: reset scroll immediately to top!
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: true });
+        }
+        if (mainRef.current) {
+          mainRef.current.scrollTop = 0;
+        }
+        window.scrollTo(0, 0);
+
+        requestAnimationFrame(() => {
+          if (lenis) {
+            lenis.resize();
+            lenis.scrollTo(0, { immediate: true });
+          }
+          if (mainRef.current) {
+            mainRef.current.scrollTop = 0;
+          }
+          window.scrollTo(0, 0);
+          ScrollTrigger.refresh();
+
+          // Move focus to page's <h1> (tabindex=-1) for accessibility without scrolling away
+          const h1 = document.querySelector('h1');
+          if (h1) {
+            if (!h1.hasAttribute('tabindex')) {
+              h1.setAttribute('tabindex', '-1');
+            }
+            h1.focus({ preventScroll: true });
+          }
+        });
+      }
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+  }, [router.events, lenis]);
+
+  // Handle in-page hash links (e.g. clicking /page#faq from within the same page)
+  useEffect(() => {
+    const handleHashChangeComplete = (url) => {
+      const hash = window.location.hash || (url && url.includes('#') ? '#' + url.split('#')[1] : null);
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          const header = document.querySelector('header');
+          const offset = (header ? header.getBoundingClientRect().height : 60) + 24;
+          const isReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (lenis) {
+            lenis.scrollTo(target, {
+              offset: -offset,
+              immediate: isReduced,
+              duration: isReduced ? 0 : 1,
+            });
+          } else {
+            target.scrollIntoView({ behavior: isReduced ? 'auto' : 'smooth' });
+          }
+        }
+      }
+    };
+
+    router.events.on('hashChangeComplete', handleHashChangeComplete);
+    return () => {
+      router.events.off('hashChangeComplete', handleHashChangeComplete);
+    };
+  }, [router.events, lenis]);
+
   // Refresh ScrollTrigger after route changes so all trigger bounds recalculate
   useEffect(() => {
     const timer = setTimeout(() => {
