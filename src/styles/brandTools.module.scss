@@ -489,17 +489,122 @@
   box-sizing: border-box;
 
   &:hover {
-    background: rgba(255, 40, 40, 0.03);
+    background: var(--tool-accent-bg);
 
     .toolCardArrow {
       transform: translateX(3px);
-      color: var(--brandColor);
+      color: var(--tool-accent-dark);
     }
 
     .toolCardTitle {
-      color: var(--brandColor);
+      color: var(--tool-accent-dark);
     }
   }
+}
+
+.hubControls {
+  margin: calc(var(--layout-columns-gap) * 1.5) 0 calc(var(--layout-columns-gap) * 1.25) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.searchBox {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.6rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--tool-surface);
+  border: 1.5px solid var(--tool-border);
+  border-radius: 12px;
+  color: var(--tool-text-main);
+  box-shadow: var(--tool-shadow-sm);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: var(--tool-accent);
+    box-shadow: 0 0 0 3px var(--tool-accent-subtle);
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tool-text-subtle);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.clearSearchBtn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--tool-text-subtle);
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+
+  &:hover {
+    color: var(--tool-text-main);
+  }
+}
+
+.categoryTabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.categoryTab {
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: 1px solid var(--tool-border);
+  background: var(--tool-surface);
+  color: var(--tool-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--tool-text-main);
+    border-color: var(--tool-accent);
+  }
+}
+
+.categoryTabActive {
+  background: var(--tool-accent) !important;
+  color: var(--tool-btn-text) !important;
+  border-color: var(--tool-accent) !important;
+  box-shadow: var(--tool-shadow-sm);
+}
+
+.newBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--tool-accent);
+  color: var(--tool-btn-text);
+  margin-left: 0.5rem;
 }
 
 .toolCardTop {

@@ -1,0 +1,358 @@
+@import '@src/styles/functions.scss';
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * FileCard
+ * ───────────────────────────────────────────────────────────────────────────── */
+.fileCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.15rem;
+  background: var(--tool-surface);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  box-shadow: var(--tool-shadow-sm);
+  margin-bottom: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fileThumbnail {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(31, 33, 32, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fileIcon {
+  font-size: 1.5rem;
+}
+
+.fileDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.fileNameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.fileName {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--tool-text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.statusChip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  text-transform: capitalize;
+}
+
+.statusChip.ready {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.statusChip.processing {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.statusChip.done {
+  background: rgba(145, 191, 85, 0.2);
+  color: var(--tool-accent-dark);
+}
+
+.statusChip.error {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.savingsChip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  background: rgba(145, 191, 85, 0.25);
+  color: var(--tool-accent-dark);
+}
+
+.fileMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--tool-text-muted);
+}
+
+.metaArrow {
+  color: var(--tool-text-subtle);
+}
+
+.newSize {
+  color: var(--tool-accent-dark);
+  font-weight: 600;
+}
+
+.cardProgressBar {
+  height: 4px;
+  background: rgba(31, 33, 32, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.4rem;
+}
+
+.cardProgressFill {
+  height: 100%;
+  background: var(--tool-accent);
+  transition: width 0.2s ease;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  color: var(--tool-text-subtle);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: #ef4444;
+    background: #fef2f2;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * ResultActions
+ * ───────────────────────────────────────────────────────────────────────────── */
+.resultActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.primaryActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--tool-accent);
+  color: var(--tool-btn-text);
+  font-size: 0.95rem;
+  font-weight: 650;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--tool-shadow-sm);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    background-color: var(--tool-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--tool-shadow-md);
+  }
+
+  &:active {
+    background-color: var(--tool-accent-active);
+    transform: translateY(0);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.secondaryActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.35rem;
+  background-color: transparent;
+  color: var(--tool-text-main);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: 1.5px solid var(--tool-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--tool-accent);
+    color: var(--tool-accent-dark);
+    background-color: var(--tool-accent-bg);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.ghostActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 48px;
+  padding: 0.75rem 1.15rem;
+  background: transparent;
+  color: var(--tool-text-muted);
+  font-size: 0.88rem;
+  font-weight: 550;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--tool-text-main);
+    background: rgba(31, 33, 32, 0.04);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * BeforeAfter Slider
+ * ───────────────────────────────────────────────────────────────────────────── */
+.beforeAfterContainer {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 1.5rem auto;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--tool-border);
+  user-select: none;
+  cursor: ew-resize;
+  background: #000;
+}
+
+.afterImage,
+.beforeImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.beforeWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.imageBadge {
+  position: absolute;
+  bottom: 12px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.beforeBadge {
+  left: 12px;
+}
+
+.afterBadge {
+  right: 12px;
+}
+
+.dividerLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderKnob {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tool-text-main);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * StatsBar
+ * ───────────────────────────────────────────────────────────────────────────── */
+.statsBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--tool-surface-subtle);
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+  margin: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tool-text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.statValue {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--tool-text-main);
+}
+
+.statHighlight {
+  color: var(--tool-accent-dark);
+}

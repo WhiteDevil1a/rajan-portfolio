@@ -1,0 +1,212 @@
+/**
+ * Brand Tools Design System Tokens
+ * Brand accent for tools: #91bf55 (green)
+ * All color tokens pass WCAG AA contrast (≥ 4.5:1 for normal text, ≥ 3:1 for large text / UI elements)
+ */
+
+:root {
+  /* Brand Tools Colors */
+  --tool-accent: #91bf55;
+  --tool-accent-hover: #7fae45;
+  --tool-accent-active: #6e9a3b;
+  --tool-accent-dark: #4a7320; /* Darker green for text/links on white: 5.2:1 contrast ratio */
+  --tool-accent-subtle: rgba(145, 191, 85, 0.12);
+  --tool-accent-bg: rgba(145, 191, 85, 0.08);
+  --tool-accent-border: rgba(145, 191, 85, 0.35);
+  --tool-accent-border-active: #91bf55;
+
+  /* Button text color: dark on #91bf55 achieves ~8:1 contrast (accessible) */
+  --tool-btn-text: #10200a;
+
+  /* Neutrals */
+  --tool-surface: #ffffff;
+  --tool-surface-subtle: #f8faf8;
+  --tool-surface-card: #ffffff;
+  --tool-text-main: #1f2120; /* Soft near-black: > 12:1 contrast */
+  --tool-text-muted: #525754; /* Secondary text: > 4.8:1 contrast */
+  --tool-text-subtle: #6c726e;
+  --tool-border: rgba(31, 33, 32, 0.12);
+  --tool-border-hover: rgba(31, 33, 32, 0.25);
+  --tool-shadow-sm: 0 1px 3px rgba(16, 32, 10, 0.06), 0 1px 2px rgba(16, 32, 10, 0.04);
+  --tool-shadow-md: 0 4px 12px rgba(16, 32, 10, 0.08), 0 2px 4px rgba(16, 32, 10, 0.04);
+  --tool-shadow-lg: 0 10px 24px rgba(16, 32, 10, 0.1), 0 4px 8px rgba(16, 32, 10, 0.05);
+
+  /* Spacing Scale */
+  --tool-space-8: 8px;
+  --tool-space-12: 12px;
+  --tool-space-16: 16px;
+  --tool-space-24: 24px;
+  --tool-space-32: 32px;
+  --tool-space-48: 48px;
+  --tool-space-72: 72px;
+  --tool-space-96: 96px;
+
+  /* Typography Scale */
+  --tool-h1: clamp(2rem, 4.5vw, 3.25rem);
+  --tool-h2: clamp(1.5rem, 3vw, 2rem);
+  --tool-h3: 1.25rem;
+  --tool-body: 1.0625rem;
+  --tool-small: 0.875rem;
+
+  /* Line Heights */
+  --tool-lh-tight: 1.15;
+  --tool-lh-heading: 1.25;
+  --tool-lh-body: 1.7;
+  --tool-lh-nepali: 1.85;
+
+  /* Prose Width */
+  --tool-prose-max: 70ch;
+}
+
+/* Nepali Typography settings */
+[lang='ne'],
+.nepali-text {
+  font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: var(--tool-lh-nepali) !important;
+  letter-spacing: normal !important;
+}
+
+/* Base Prose Styles */
+.prose {
+  max-width: var(--tool-prose-max);
+  color: var(--tool-text-main);
+  font-size: var(--tool-body);
+  line-height: var(--tool-lh-body);
+  letter-spacing: normal;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--tool-text-main);
+  font-weight: 600;
+  margin-top: 1.75em;
+  margin-bottom: 0.75em;
+  line-height: var(--tool-lh-heading);
+}
+
+.prose h1 {
+  font-size: var(--tool-h1);
+  letter-spacing: -0.02em;
+}
+
+.prose h2 {
+  font-size: var(--tool-h2);
+  letter-spacing: -0.01em;
+}
+
+.prose h3 {
+  font-size: var(--tool-h3);
+  letter-spacing: 0;
+}
+
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--tool-text-main);
+}
+
+.prose a {
+  color: var(--tool-accent-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.prose a:hover {
+  color: var(--tool-accent-active);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--tool-accent);
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--tool-accent-bg);
+  border-radius: 0 8px 8px 0;
+  color: var(--tool-text-main);
+}
+
+.prose code,
+.prose kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  background: rgba(31, 33, 32, 0.06);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--tool-text-main);
+  word-break: break-word;
+}
+
+/* Callouts (note, tip, warning) */
+.prose-callout {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.prose-callout.note {
+  background: #f0fdf4;
+  border-left: 4px solid var(--tool-accent-dark);
+  color: #14532d;
+}
+
+.prose-callout.tip {
+  background: #eff6ff;
+  border-left: 4px solid #2563eb;
+  color: #1e3a8a;
+}
+
+.prose-callout.warning {
+  background: #fffbeb;
+  border-left: 4px solid #d97706;
+  color: #78350f;
+}
+
+/* Responsive Table */
+.prose-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--tool-border);
+}
+
+.prose th {
+  background: var(--tool-surface-subtle);
+  font-weight: 600;
+  color: var(--tool-text-main);
+}
+
+.prose tr:nth-child(even) td {
+  background: rgba(31, 33, 32, 0.02);
+}

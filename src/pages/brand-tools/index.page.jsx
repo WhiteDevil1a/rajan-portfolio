@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import CustomHead from '@src/components/dom/CustomHead';
 import { TOOLS, TOOLS_BY_CATEGORY, TOOL_CATEGORIES } from '@src/data/tools';
@@ -11,14 +11,45 @@ const SITE_URL = 'https://rajanbhatta.com.np';
 const seo = {
   title: 'Free Brand Design Tools & Online Utilities Suite | Rajan Bhatta',
   description:
-    '17 free professional brand design tools — SVG converter, favicon generator, Nepali date converter, color contrast checker, QR code maker and more. No login, no watermark, runs in your browser.',
+    '21 free professional brand design tools — SVG converter, favicon generator, Nepali date converter, OCR, speech-to-text, color contrast checker, QR code maker and more. No login, runs in your browser.',
   canonical: `${SITE_URL}/brand-tools`,
 };
+
+const TOOL_ICONS = {
+  'brand-kit': '🎨',
+  'color-palette': '🌈',
+  'gradient': '📐',
+  'color-contrast': '👁️',
+  'business-card': '📇',
+  'email-signature': '✉️',
+  'letterhead': '📝',
+  'qr-code': '📱',
+  'logo-search': '🔍',
+  'svg-to-png': '🖼️',
+  'png-to-svg': '⚡',
+  'svg-optimizer': '🧹',
+  'favicon-generator': '🌐',
+  'image-compressor': '🗜️',
+  'preeti-to-unicode': '🔤',
+  'preeti-word-to-unicode': '📄',
+  'nepali-unicode-typing': '⌨️',
+  'nepali-date-converter': '📅',
+  'nepali-ocr': '📑',
+  'nepali-speech-to-text': '🎙️',
+  'preeti-pdf-to-unicode': '📜',
+};
+
+const NEW_TOOLS = new Set([
+  'nepali-ocr',
+  'nepali-speech-to-text',
+  'preeti-pdf-to-unicode',
+  'preeti-word-to-unicode',
+]);
 
 const LANDING_FAQS = [
   {
     q: 'What is the Brand Design Tools Suite?',
-    a: 'The Brand Design Tools Suite is an interconnected set of 17 free brand identity utilities. It enables designers, founders, and creative directors to define, manage, test, and export professional brand assets — connected through a central Brand Kit that automatically powers every generator.',
+    a: 'The Brand Design Tools Suite is an interconnected set of 21 free brand identity utilities. It enables designers, founders, and creative directors to define, manage, test, and export professional brand assets — connected through a central Brand Kit that automatically powers every generator.',
   },
   {
     q: 'How does the central Brand Kit sync across the entire tool suite?',
@@ -26,15 +57,15 @@ const LANDING_FAQS = [
   },
   {
     q: 'Are these tools completely free to use?',
-    a: 'Yes. All 17 tools are 100% free with no login required, no subscription limits, and no watermarks. High-resolution PNGs, vector SVGs, and print-ready PDFs can be exported instantly.',
+    a: 'Yes. All 21 tools are 100% free with no login required, no subscription limits, and no watermarks. High-resolution PNGs, vector SVGs, and print-ready PDFs can be exported instantly.',
   },
   {
     q: 'Do my files ever get uploaded to a server?',
-    a: 'Never. All processing — image conversion, SVG optimization, Nepali font conversion, favicon generation — runs entirely in your browser. Your files and text never leave your device.',
+    a: 'Never. All processing — image conversion, SVG optimization, Nepali OCR, Whisper speech-to-text, font conversion, favicon generation — runs entirely in your browser using WebAssembly and Web Workers. Your files and text never leave your device.',
   },
   {
     q: 'Are there Nepali-language tools?',
-    a: 'Yes. The Nepali Tools category includes a Preeti to Unicode converter, a Nepali Unicode typing editor with phonetic input, and a Bikram Sambat ↔ Gregorian date converter.',
+    a: 'Yes. The Nepali Tools category includes Preeti to Unicode, Preeti Word (.docx) to Unicode, Preeti PDF to Unicode, phonetic Nepali Unicode typing, a Bikram Sambat ↔ Gregorian date converter, Nepali OCR, and speech-to-text transcription.',
   },
 ];
 
@@ -55,6 +86,48 @@ const getItemListSchema = () => ({
 });
 
 function BrandToolsLandingPage() {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filterCategories = useMemo(
+    () => ['All', ...TOOL_CATEGORIES],
+    []
+  );
+
+  const filteredToolsByCategory = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+
+    const result = {};
+
+    for (const cat of TOOL_CATEGORIES) {
+      if (selectedCategory !== 'All' && selectedCategory !== cat) {
+        continue;
+      }
+
+      const toolsInCat = TOOLS_BY_CATEGORY[cat] || [];
+      const matching = q
+        ? toolsInCat.filter((tool) => {
+            const inTitle = tool.title.toLowerCase().includes(q);
+            const inDesc = tool.description.toLowerCase().includes(q);
+            const inTagline = tool.tagline?.toLowerCase().includes(q);
+            const inKeywords = tool.secondaryKeywords?.some((kw) => kw.toLowerCase().includes(q));
+            return inTitle || inDesc || inTagline || inKeywords;
+          })
+        : toolsInCat;
+
+      if (matching.length > 0) {
+        result[cat] = matching;
+      }
+    }
+
+    return result;
+  }, [searchQuery, selectedCategory]);
+
+  const totalMatchingTools = Object.values(filteredToolsByCategory).reduce(
+    (sum, list) => sum + list.length,
+    0
+  );
+
   return (
     <div className={clsx(styles.brandToolsRoot, 'layout-block-inner')}>
       <CustomHead
@@ -132,11 +205,69 @@ function BrandToolsLandingPage() {
         </p>
       </section>
 
-      {/* Tool categories */}
-      {TOOL_CATEGORIES.map((cat) => {
-        const tools = TOOLS_BY_CATEGORY[cat];
-        if (!tools || tools.length === 0) return null;
-        return (
+      {/* Hub Interactive Controls: Search + Category Filter Tabs */}
+      <div className={styles.hubControls}>
+        <div className={styles.searchBox}>
+          <span className={styles.searchIcon} aria-hidden="true">
+            🔍
+          </span>
+          <input
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search all tools (e.g. svg, ocr, favicon, docx, contrast)..."
+            className={styles.searchInput}
+            aria-label="Search tools"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              className={styles.clearSearchBtn}
+              onClick={() => setSearchQuery('')}
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
+        {/* Category Tabs */}
+        <div className={styles.categoryTabs} role="tablist" aria-label="Tool categories">
+          {filterCategories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              role="tab"
+              aria-selected={selectedCategory === cat}
+              className={clsx(
+                styles.categoryTab,
+                selectedCategory === cat && styles.categoryTabActive
+              )}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tool categories & cards */}
+      {totalMatchingTools === 0 ? (
+        <div style={{ padding: '3rem 1rem', textAlign: 'center', color: 'var(--tool-text-muted)' }}>
+          <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>No tools match &ldquo;{searchQuery}&rdquo;.</p>
+          <button
+            type="button"
+            className={styles.categoryTab}
+            onClick={() => {
+              setSearchQuery('');
+              setSelectedCategory('All');
+            }}
+          >
+            Reset Filters
+          </button>
+        </div>
+      ) : (
+        Object.entries(filteredToolsByCategory).map(([cat, tools]) => (
           <section key={cat} className={styles.categorySection}>
             <div className={styles.categoryTitle}>
               <span>{cat}</span>
@@ -147,10 +278,16 @@ function BrandToolsLandingPage() {
                   <div>
                     <div className={styles.toolCardTop}>
                       <span className={styles.toolNumber}>{tool.number}</span>
-                      <span className={styles.toolCategoryBadge}>{tool.category}</span>
+                      <span className={styles.toolCategoryBadge}>
+                        {TOOL_ICONS[tool.id] ? `${TOOL_ICONS[tool.id]} ` : ''}
+                        {tool.category}
+                      </span>
                     </div>
-                    <h3 className={styles.toolCardTitle}>{tool.title}</h3>
-                    <p className={styles.toolCardDesc}>{tool.description}</p>
+                    <h3 className={styles.toolCardTitle}>
+                      {tool.title}
+                      {NEW_TOOLS.has(tool.id) && <span className={styles.newBadge}>New</span>}
+                    </h3>
+                    <p className={styles.toolCardDesc}>{tool.tagline || tool.description}</p>
                   </div>
                   <div className={styles.toolCardFooter}>
                     <span>Open Tool</span>
@@ -160,8 +297,8 @@ function BrandToolsLandingPage() {
               ))}
             </div>
           </section>
-        );
-      })}
+        ))
+      )}
 
       {/* Ecosystem Workflow */}
       <div className={styles.educationalSection}>

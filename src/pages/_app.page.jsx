@@ -2,6 +2,7 @@
 
 import '@src/styles/global.scss';
 import '@src/styles/global.css';
+import '@src/styles/tool-tokens.css';
 
 import * as THREE from 'three';
 
