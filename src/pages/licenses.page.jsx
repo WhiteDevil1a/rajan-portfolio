@@ -23,6 +23,15 @@ const THIRD_PARTY_LIBRARIES = [
   { name: 'Noto Sans Devanagari', license: 'SIL Open Font License (OFL)', url: 'https://fonts.google.com/specimen/Noto+Sans+Devanagari', desc: 'Clean typography for Nepali complex script' },
 ];
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Open Source Licenses', item: `${SITE_URL}/licenses` },
+  ],
+};
+
 export default function LicensesPage() {
   return (
     <div className={clsx(styles.brandToolsRoot, 'layout-block-inner')}>
@@ -31,6 +40,11 @@ export default function LicensesPage() {
         description="Open source licenses, third-party library attributions, and trademark disclaimers for rajanbhatta.com.np and Brand Tools."
         canonical={`${SITE_URL}/licenses`}
         noPersonSchema
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <section className={styles.heroSection}>

@@ -12,7 +12,11 @@ const getPersonSchema = () => ({
   url: SITE_URL,
   image: DEFAULT_OG_IMAGE,
   email: 'mailto:hi@rajanbhatta.com.np',
-  sameAs: ['https://www.linkedin.com/in/rajan-bhatta/', 'https://www.instagram.com/brandwithrajan/'],
+  sameAs: [
+    'https://www.linkedin.com/in/rajan-bhatta/',
+    'https://www.instagram.com/brandwithrajan/',
+    'https://www.facebook.com/brandwithrajan',
+  ],
   alumniOf: [
     { '@type': 'Organization', name: 'Tech Integrators' },
     { '@type': 'Organization', name: 'Planning Experts' },
@@ -69,6 +73,7 @@ function CustomHead({
 
       {/* OpenGraph */}
       <meta property="og:type" content="website" />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:site_name" content="Rajan Bhatta" />
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={title} />

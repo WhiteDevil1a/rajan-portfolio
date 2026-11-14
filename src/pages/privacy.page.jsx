@@ -6,6 +6,15 @@ import clsx from 'clsx';
 
 const SITE_URL = 'https://rajanbhatta.com.np';
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: `${SITE_URL}/privacy` },
+  ],
+};
+
 export default function PrivacyPage() {
   return (
     <div className={clsx(styles.brandToolsRoot, 'layout-block-inner')}>
@@ -14,6 +23,11 @@ export default function PrivacyPage() {
         description="Privacy policy for rajanbhatta.com.np and Brand Tools. 100% client-side processing, no file uploads, no tracking accounts, zero data collection."
         canonical={`${SITE_URL}/privacy`}
         noPersonSchema
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <section className={styles.heroSection}>

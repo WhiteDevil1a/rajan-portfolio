@@ -6,6 +6,15 @@ import clsx from 'clsx';
 
 const SITE_URL = 'https://rajanbhatta.com.np';
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: `${SITE_URL}/terms` },
+  ],
+};
+
 export default function TermsPage() {
   return (
     <div className={clsx(styles.brandToolsRoot, 'layout-block-inner')}>
@@ -14,6 +23,11 @@ export default function TermsPage() {
         description="Terms of service for rajanbhatta.com.np and Brand Tools. Free to use, no warranties, local processing, client deliverables ownership."
         canonical={`${SITE_URL}/terms`}
         noPersonSchema
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <section className={styles.heroSection}>
