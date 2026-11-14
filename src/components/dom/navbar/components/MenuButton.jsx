@@ -6,18 +6,33 @@ import { useShallow } from 'zustand/react/shallow';
 import { useStore } from '@src/store';
 
 function MenuButton() {
-  const [setIsMenuOpen, lenis, isLoading] = useStore(useShallow((state) => [state.setIsMenuOpen, state.lenis, state.isLoading]));
+  const [isMenuOpen, setIsMenuOpen, lenis, isLoading] = useStore(
+    useShallow((state) => [state.isMenuOpen, state.setIsMenuOpen, state.lenis, state.isLoading])
+  );
 
   const handleClick = useCallback(() => {
     if (!isLoading) {
-      setIsMenuOpen(true);
-      lenis.stop();
+      const next = !isMenuOpen;
+      setIsMenuOpen(next);
+      if (next) {
+        lenis?.stop();
+      } else {
+        lenis?.start();
+      }
     }
-  }, [isLoading, setIsMenuOpen, lenis]);
+  }, [isLoading, isMenuOpen, setIsMenuOpen, lenis]);
 
   return (
-    <button type="button" onClick={handleClick} aria-label="Open Menu" aria-expanded={false} aria-controls="menu" className={clsx('p-xs', styles.button)}>
-      <PerspectiveText label="Menu" className={clsx('p-x', styles.label)} />
+    <button
+      id="menu-toggle-button"
+      type="button"
+      onClick={handleClick}
+      aria-label={isMenuOpen ? 'Close Menu' : 'Open Menu'}
+      aria-expanded={isMenuOpen}
+      aria-controls="menu"
+      className={clsx('p-xs', styles.button)}
+    >
+      <PerspectiveText label={isMenuOpen ? 'Close' : 'Menu'} className={clsx('p-x', styles.label)} />
     </button>
   );
 }
