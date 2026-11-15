@@ -75,13 +75,6 @@ const nextConfig = {
       destination: '/',
       permanent: true,
     },
-    // Canonical host: always non-www
-    {
-      source: '/(.*)',
-      has: [{ type: 'host', value: 'www.rajanbhatta.com.np' }],
-      destination: 'https://rajanbhatta.com.np/:path*',
-      permanent: true,
-    },
   ],
 };
 
