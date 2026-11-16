@@ -9,9 +9,6 @@
   height: 100%;
   z-index: 1;
   overflow: hidden;
-  background: radial-gradient(circle at 85% 30%, rgba(255, 40, 40, 0.22) 0%, rgba(20, 2, 2, 0.4) 60%, transparent 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   @include mobile {
     width: 100vw;
   }
@@ -49,12 +46,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent;
-    color: var(--white);
     > p {
       line-height: 0.4;
       font-size: 1.2vw;
-      margin: 0;
     }
     @include mobile {
       height: 6vw;
@@ -86,6 +80,7 @@
   &:nth-child(1) {
     &::before {
       content: 'Sitemap';
+
       font-weight: 700;
       margin-bottom: var(--layout-columns-gap);
     }
@@ -179,123 +174,5 @@
         transform 0.7s cubic-bezier(0.2, 1, 0.3, 1),
         opacity 0.1s linear;
     }
-  }
-}
-
-/* Brand Tools Dropdown Styles */
-.brandToolsHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.7vw;
-  @include mobile {
-    gap: 2vw;
-  }
-}
-
-.dropdownToggleBtn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.2vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  opacity: 0.8;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    opacity: 1;
-    color: #ff2828;
-  }
-
-  @include mobile {
-    padding: 1vw;
-  }
-}
-
-.chevron {
-  width: 0.9vw;
-  height: 0.9vw;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  stroke: currentColor;
-  @include mobile {
-    width: 3.5vw;
-    height: 3.5vw;
-  }
-}
-
-.chevronOpen {
-  transform: rotate(180deg);
-}
-
-.dropdownMenu {
-  margin-top: calc(var(--layout-columns-gap) * 0.75);
-  margin-bottom: calc(var(--layout-columns-gap) * 1.25);
-  padding-left: calc(var(--layout-columns-gap) * 0.6);
-  border-left: 2px solid rgba(255, 40, 40, 0.5);
-  max-height: 45vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 40, 40, 0.4) transparent;
-
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: rgba(255, 40, 40, 0.4);
-    border-radius: 3px;
-  }
-}
-
-.dropdownCategoryTitle {
-  font-size: 0.8vw;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #ff2828;
-  font-weight: 700;
-  margin-top: calc(var(--layout-columns-gap) * 0.75);
-  margin-bottom: calc(var(--layout-columns-gap) * 0.25);
-  &:first-child {
-    margin-top: 0;
-  }
-  @include mobile {
-    font-size: 2.7vw;
-  }
-}
-
-.dropdownItem {
-  display: block;
-  font-size: 1.05vw;
-  line-height: 1.45;
-  color: rgba(240, 244, 241, 0.85);
-  text-decoration: none;
-  padding: 0.2vw 0;
-  transition: color 0.2s ease, transform 0.2s ease;
-  white-space: nowrap;
-
-  &:hover {
-    color: #ff2828;
-    transform: translateX(4px);
-  }
-
-  @include mobile {
-    font-size: 3.2vw;
-    padding: 0.8vw 0;
-  }
-}
-
-.dropdownViewAll {
-  display: inline-block;
-  margin-top: calc(var(--layout-columns-gap) * 0.6);
-  font-size: 0.95vw;
-  font-weight: 600;
-  color: #ff2828;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  @include mobile {
-    font-size: 3vw;
   }
 }

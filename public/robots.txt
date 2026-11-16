@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://rajanbhatta.com.np
+Host: https://rajanbhatta.com.np/
 
 # Sitemaps
 Sitemap: https://rajanbhatta.com.np/sitemap.xml

@@ -9,17 +9,8 @@ import { useShallow } from 'zustand/react/shallow';
 import { useStore } from '@src/store';
 
 function Layout({ children, layoutRef, mainRef, router }) {
-  const [lenis, introOut, setIsLoading, isMenuOpen, setIsMenuOpen, setIsAbout, skipLoader, setSiteReady] = useStore(
-    useShallow((state) => [
-      state.lenis,
-      state.introOut,
-      state.setIsLoading,
-      state.isMenuOpen,
-      state.setIsMenuOpen,
-      state.setIsAbout,
-      state.skipLoader,
-      state.setSiteReady,
-    ]),
+  const [lenis, introOut, setIsLoading, isMenuOpen, setIsMenuOpen, setIsAbout] = useStore(
+    useShallow((state) => [state.lenis, state.introOut, state.setIsLoading, state.isMenuOpen, state.setIsMenuOpen, state.setIsAbout]),
   );
 
   const enterTimelineRef = useRef();
@@ -34,38 +25,10 @@ function Layout({ children, layoutRef, mainRef, router }) {
       if (introOut) {
         if (exitTimelineRef.current) exitTimelineRef.current.pause();
 
-        // On routes without a loader, just reveal content immediately
-        if (skipLoader) {
-          setIsAbout(router.asPath === '/about');
-          setIsLoading(false);
-          setSiteReady(true);
-          if (lenis) {
-            lenis.start();
-            lenis.resize();
-          }
-          if (mainRef.current) {
-            gsap.set(mainRef.current, {
-              opacity: 1,
-              x: '0px',
-              scale: 1,
-              border: 'none',
-              borderRadius: 0,
-              pointerEvents: 'auto',
-              height: 'auto',
-            });
-          }
-          if (layoutRef.current) {
-            gsap.set(layoutRef.current, { height: '100%', opacity: 1 });
-          }
-          gsap.set('header', { autoAlpha: 1 });
-          return;
-        }
-
         const tl = gsap.timeline({
           onComplete: () => {
             setIsAbout(router.asPath === '/about');
             setIsLoading(false);
-            setSiteReady(true);
             lenis.start();
           },
         });
@@ -141,7 +104,7 @@ function Layout({ children, layoutRef, mainRef, router }) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [introOut, skipLoader],
+    [introOut],
   );
 
   const handleExit = useCallback(
@@ -149,20 +112,10 @@ function Layout({ children, layoutRef, mainRef, router }) {
       if (introOut) {
         if (enterTimelineRef.current) enterTimelineRef.current.pause();
 
+        lenis.stop();
         if (isMenuOpen) {
           setIsMenuOpen(false);
         }
-
-        // On routes without a loader, skip the full GSAP slide choreography
-        if (skipLoader) {
-          setIsLoading(true);
-          if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
-          if (mainRef.current) mainRef.current.scrollTop = 0;
-          return;
-        }
-
-        if (lenis) lenis.stop();
-
         if (isEntering === false) {
           const tl = gsap.timeline({
             onComplete: () => {
@@ -255,7 +208,7 @@ function Layout({ children, layoutRef, mainRef, router }) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [introOut, menuTime, isEntering, skipLoader],
+    [introOut, menuTime, isEntering],
   );
 
   return (
@@ -266,8 +219,8 @@ function Layout({ children, layoutRef, mainRef, router }) {
           in={false}
           unmountOnExit
           timeout={{
-            enter: skipLoader ? 0 : introOut ? 4500 : 0,
-            exit: skipLoader ? 0 : introOut ? 2550 : 0,
+            enter: introOut ? 4500 : 0,
+            exit: introOut ? 2550 : 0,
           }}
           onEnter={handleEnter}
           onExit={handleExit}

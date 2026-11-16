@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['page.jsx', 'page.tsx', 'page.ts', 'page.js'],
+  pageExtensions: ['page.jsx'],
   experimental: {
     // optimizeCss: true,
     // nextScriptWorkers: true,
@@ -28,13 +28,6 @@ const nextConfig = {
     if (!isServer) {
       // We're in the browser build, so we can safely exclude the sharp module
       config.externals.push('sharp');
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        canvas: false,
-        fs: false,
-        path: false,
-        crypto: false,
-      };
     }
     // shader support
     config.module.rules.push({
@@ -73,13 +66,6 @@ const nextConfig = {
     {
       source: '/404',
       destination: '/',
-      permanent: true,
-    },
-    // Canonical host: always non-www
-    {
-      source: '/(.*)',
-      has: [{ type: 'host', value: 'www.rajanbhatta.com.np' }],
-      destination: 'https://rajanbhatta.com.np/:path*',
       permanent: true,
     },
   ],
